@@ -37,10 +37,6 @@
 				<td>{{ car.seats }}</td>
 			</tr>
 			<tr>
-				<th>Unavailabilitydate</th>
-				<td>{{ car.unavailabilitydate ? car.unavailabilitydate|date('Y-m-d') : '' }}</td>
-			</tr>
-			<tr>
 				<th>Registration</th>
 				<td>{{ car.registration }}</td>
 			</tr>
@@ -49,6 +45,10 @@
 				<td>
 					<img class="w-25" src="{{ car.picture }}">
 				</td>
+			</tr>
+			<tr>
+				<th>Available</th>
+				<td>{{ car.available }}</td>
 			</tr>
 		</tbody>
 	</table>

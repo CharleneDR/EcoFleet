@@ -4,6 +4,12 @@
 {% endblock %}
 
 {% block body %}
+	<nav class="navbar navbar-light">
+		<form class="form-inline">
+			<button class="btn btn-outline-success" type="button">List of cars</button>
+			<button class="btn btn-outline-success" type="button" href="{{ path("app_category_index") }}">List of rent</button>
+		</form>
+	</nav>
 	<h1>Your cars</h1>
 
 	<table class="table">
@@ -15,8 +21,8 @@
 				<th>Geerbox</th>
 				<th>Kilometers</th>
 				<th>Seats</th>
-				<th>Unavailabilitydate</th>
 				<th>Registration</th>
+				<th>Available</th>
 				<th>Picture</th>
 				<th>actions</th>
 			</tr>
@@ -30,8 +36,15 @@
 					<td>{{ car.geerbox }}</td>
 					<td>{{ car.kilometers }}</td>
 					<td>{{ car.seats }}</td>
-					<td>{{ car.unavailabilitydate ? car.unavailabilitydate|date('Y-m-d') : '' }}</td>
 					<td>{{ car.registration }}</td>
+					<td>
+						{% if car.available == true %}
+							Available
+						{% endif %}
+						{% if car.available == false %}
+							Unavailable
+						{% endif %}
+					</td>
 					<td>
 						<img class="w-25" src="{{ car.picture }}">
 					</td>
