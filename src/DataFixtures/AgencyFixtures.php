@@ -20,8 +20,6 @@ class AgencyFixtures extends Fixture
         $agency2->setCity('Nantes');
         $manager->persist($agency2);
         $this->addReference('city', $agency);
-        // $product = new Product();
-        // $manager->persist($product);
 
         $manager->flush();
     }
