@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CarRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CarRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 class Car
@@ -32,15 +34,27 @@ class Car
     #[ORM\Column]
     private ?int $seats = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $unavailabilitydate = null;
-
     #[ORM\ManyToOne(inversedBy: 'cars')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Agency $city = null;
 
     #[ORM\Column(length: 255)]
     private ?string $registration = null;
+
+    #[ORM\ManyToMany(targetEntity: Rent::class, mappedBy: 'car')]
+    private Collection $rents;
+
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
+
+    #[ORM\OneToMany(mappedBy: 'car', targetEntity: UnavailabilityDate::class)]
+    private Collection $unavailabilityDates;
+
+    public function __construct()
+    {
+        $this->rents = new ArrayCollection();
+        $this->unavailabilityDates = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -119,18 +133,6 @@ class Car
         return $this;
     }
 
-    public function getUnavailabilitydate(): ?\DateTimeInterface
-    {
-        return $this->unavailabilitydate;
-    }
-
-    public function setUnavailabilitydate(\DateTimeInterface $unavailabilitydate): self
-    {
-        $this->unavailabilitydate = $unavailabilitydate;
-
-        return $this;
-    }
-
     public function getCity(): ?Agency
     {
         return $this->city;
@@ -154,4 +156,75 @@ class Car
 
         return $this;
     }
+
+    /**
+     * @return Collection<int, Rent>
+     */
+    public function getRents(): Collection
+    {
+        return $this->rents;
+    }
+
+    public function addRent(Rent $rent): self
+    {
+        if (!$this->rents->contains($rent)) {
+            $this->rents->add($rent);
+            $rent->addCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRent(Rent $rent): self
+    {
+        if ($this->rents->removeElement($rent)) {
+            $rent->removeCar($this);
+        }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<int, UnavailabilityDate>
+     */
+    public function getUnavailabilityDates(): ArrayCollection
+    {
+        return $this->unavailabilityDates;
+    }
+
+    public function addUnavailabilityDate(UnavailabilityDate $unavailabilityDate): self
+    {
+        if (!$this->unavailabilityDates->contains($unavailabilityDate)) {
+            $this->unavailabilityDates->add($unavailabilityDate);
+            $unavailabilityDate->setCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnavailabilityDate(UnavailabilityDate $unavailabilityDate): self
+    {
+        if ($this->unavailabilityDates->removeElement($unavailabilityDate)) {
+            // set the owning side to null (unless already changed)
+            if ($unavailabilityDate->getCar() === $this) {
+                $unavailabilityDate->setCar(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 }
