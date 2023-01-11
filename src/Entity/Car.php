@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CarRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -44,6 +46,18 @@ class Car
 
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
+
+    #[ORM\ManyToMany(targetEntity: Rent::class, mappedBy: 'car')]
+    private Collection $rents;
+
+    #[ORM\ManyToMany(targetEntity: UnavailabilityDate::class, mappedBy: 'car')]
+    private Collection $unavailabilityDates;
+
+    public function __construct()
+    {
+        $this->rents = new ArrayCollection();
+        $this->unavailabilityDates = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -154,18 +168,6 @@ class Car
     public function setRegistration(string $registration): self
     {
         $this->registration = $registration;
-
-        return $this;
-    }
-
-    public function getPicture(): ?string
-    {
-        return $this->picture;
-    }
-
-    public function setPicture(string $picture): self
-    {
-        $this->picture = $picture;
 
         return $this;
     }
