@@ -47,9 +47,13 @@ class Car
     #[ORM\ManyToMany(targetEntity: Rent::class, mappedBy: 'car')]
     private Collection $rents;
 
+    #[ORM\ManyToMany(targetEntity: UnavailabilityDate::class, mappedBy: 'car')]
+    private Collection $unavailabilityDates;
+
     public function __construct()
     {
         $this->rents = new ArrayCollection();
+        $this->unavailabilityDates = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -187,6 +191,33 @@ class Car
     {
         if ($this->rents->removeElement($rent)) {
             $rent->removeCar($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UnavailabilityDate>
+     */
+    public function getUnavailabilityDates(): Collection
+    {
+        return $this->unavailabilityDates;
+    }
+
+    public function addUnavailabilityDate(UnavailabilityDate $unavailabilityDate): self
+    {
+        if (!$this->unavailabilityDates->contains($unavailabilityDate)) {
+            $this->unavailabilityDates->add($unavailabilityDate);
+            $unavailabilityDate->addCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnavailabilityDate(UnavailabilityDate $unavailabilityDate): self
+    {
+        if ($this->unavailabilityDates->removeElement($unavailabilityDate)) {
+            $unavailabilityDate->removeCar($this);
         }
 
         return $this;
