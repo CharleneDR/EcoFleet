@@ -5,12 +5,14 @@ namespace App\Controller;
 use App\Entity\Car;
 use App\Entity\Rent;
 use App\Form\RentType;
+use App\Repository\CarRepository;
+use App\Entity\UnavailabilityDate;
 use App\Repository\RentRepository;
-use App\Repository\UnavailabilityDateRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\UnavailabilityDateRepository;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/rent')]
 class RentController extends AbstractController
@@ -23,28 +25,28 @@ class RentController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_rent_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RentRepository $rentRepository, Car $car, UnavailabilityDateRepository $unavailabilityDateRepository): Response
+    #[Route('/new/{id}', name: 'app_rent_new', methods: ['GET', 'POST'])]
+    public function new(int $id, Request $request, RentRepository $rentRepository, CarRepository $carRepository, UnavailabilityDateRepository $unavailabilityDateRepository): Response
     {
         $rent = new Rent();
         $form = $this->createForm(RentType::class, $rent);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $pickupDate = new \DateTime("2021-01-01");
-            $dropoffDate = new \Datetime("2021-01-05");
-            $car = new Car();
-            $car->setId(12);
+
+            $pickupDate = $form->getData()['pick-upDate'];
+            $dropoffDate = $form->getData()['drop-offDate'];
+            $car = $carRepository->findOneBy(["id" => $id]);
+    
             $interval = \DateInterval::createFromDateString('1 day');
             $daterange = new \DatePeriod($pickupDate, $interval ,$dropoffDate);
-
+    
             foreach($daterange as $day){
-                $unavailabilityDay = new UnavailabilityDateRepository();
+                $unavailabilityDay = new UnavailabilityDate();
                 $unavailabilityDay->setDay($day);
                 $unavailabilityDay->setCar($car);
                 $unavailabilityDateRepository->save($unavailabilityDay, true);
             }
-
             $rentRepository->save($rent, true);
 
             return $this->redirectToRoute('app_rent_index', [], Response::HTTP_SEE_OTHER);
