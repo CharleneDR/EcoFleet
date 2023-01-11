@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EmployeeRepository::class)]
@@ -25,6 +27,14 @@ class Employee
     #[ORM\OneToOne(inversedBy: 'employee', cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $user = null;
+
+    #[ORM\ManyToMany(targetEntity: Rent::class, mappedBy: 'employee')]
+    private Collection $rents;
+
+    public function __construct()
+    {
+        $this->rents = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -75,6 +85,33 @@ class Employee
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rent>
+     */
+    public function getRents(): Collection
+    {
+        return $this->rents;
+    }
+
+    public function addRent(Rent $rent): self
+    {
+        if (!$this->rents->contains($rent)) {
+            $this->rents->add($rent);
+            $rent->addEmployee($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRent(Rent $rent): self
+    {
+        if ($this->rents->removeElement($rent)) {
+            $rent->removeEmployee($this);
+        }
 
         return $this;
     }
