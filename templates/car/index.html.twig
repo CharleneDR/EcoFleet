@@ -1,49 +1,65 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Car index{% endblock %}
+{% block title %}Car index
+{% endblock %}
 
 {% block body %}
-    <h1>Car index</h1>
+	<nav class="navbar navbar-light">
+		<form class="form-inline">
+			<button class="btn btn-outline-success" type="button">List of cars</button>
+			<button class="btn btn-outline-success" type="button" href="{{ path("app_category_index") }}">List of rent</button>
+		</form>
+	</nav>
+	<h1>Your cars</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Model</th>
-                <th>Brand</th>
-                <th>Fuel</th>
-                <th>Geerbox</th>
-                <th>Kilometers</th>
-                <th>Seats</th>
-                <th>Unavailabilitydate</th>
-                <th>Registration</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for car in cars %}
-            <tr>
-                <td>{{ car.id }}</td>
-                <td>{{ car.model }}</td>
-                <td>{{ car.brand }}</td>
-                <td>{{ car.fuel }}</td>
-                <td>{{ car.geerbox }}</td>
-                <td>{{ car.kilometers }}</td>
-                <td>{{ car.seats }}</td>
-                <td>{{ car.unavailabilitydate ? car.unavailabilitydate|date('Y-m-d') : '' }}</td>
-                <td>{{ car.registration }}</td>
-                <td>
-                    <a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
-                    <a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Model</th>
+				<th>Brand</th>
+				<th>Fuel</th>
+				<th>Geerbox</th>
+				<th>Kilometers</th>
+				<th>Seats</th>
+				<th>Registration</th>
+				<th>Available</th>
+				<th>Picture</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for car in cars %}
+				<tr>
+					<td>{{ car.model }}</td>
+					<td>{{ car.brand }}</td>
+					<td>{{ car.fuel }}</td>
+					<td>{{ car.geerbox }}</td>
+					<td>{{ car.kilometers }}</td>
+					<td>{{ car.seats }}</td>
+					<td>{{ car.registration }}</td>
+					<td>
+						{% if car.available == true %}
+							Available
+						{% endif %}
+						{% if car.available == false %}
+							Unavailable
+						{% endif %}
+					</td>
+					<td>
+						<img class="w-25" src="{{ car.picture }}">
+					</td>
+					<td>
+						<a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
+						<a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="10">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 
-    <a href="{{ path('app_car_new') }}">Create new</a>
+	<a href="{{ path('app_car_new') }}">Create new</a>
 {% endblock %}
