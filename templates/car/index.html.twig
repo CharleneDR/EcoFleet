@@ -6,8 +6,12 @@
 {% block body %}
 	<nav class="navbar navbar-light">
 		<form class="form-inline">
-			<button class="btn btn-outline-success" type="button">List of cars</button>
-			<button class="btn btn-outline-success" type="button" href="{{ path("app_category_index") }}">List of rent</button>
+			<button class="btn btn-outline-success" type="button">
+				<a class="text-dark text-decoration-none" href="{{ path("app_car_index") }}">List of cars</a>
+			</button>
+			<button class="btn btn-outline-success" type="button">
+				<a class="text-dark text-decoration-none" href="{{ path("app_rent_index") }}">List of rent</a>
+			</button>
 		</form>
 	</nav>
 	<h1>Your cars</h1>
@@ -39,10 +43,14 @@
 					<td>{{ car.registration }}</td>
 					<td>
 						{% if car.available == true %}
-							Available
+							<div class="alert alert-success" role="alert">
+								Available
+							</div>
 						{% endif %}
 						{% if car.available == false %}
-							Unavailable
+							<div class="alert alert-danger" role="alert">
+								Unavailable
+							</div>
 						{% endif %}
 					</td>
 					<td>
@@ -61,5 +69,7 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('app_car_new') }}">Create new</a>
+	<button class="btn btn-outline-success" type="button">
+		<a href="{{ path('app_car_new') }}">Create new</a>
+	</button>
 {% endblock %}

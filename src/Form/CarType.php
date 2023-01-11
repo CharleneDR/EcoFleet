@@ -18,10 +18,8 @@ class CarType extends AbstractType
             ->add('geerbox')
             ->add('kilometers')
             ->add('seats')
-            ->add('unavailabilitydate')
             ->add('registration')
-            ->add('city')
-        ;
+            ->add('city');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -37,11 +37,11 @@ class RentController extends AbstractController
             $pickupDate = $form->getData()['pick-upDate'];
             $dropoffDate = $form->getData()['drop-offDate'];
             $car = $carRepository->findOneBy(["id" => $id]);
-    
+
             $interval = \DateInterval::createFromDateString('1 day');
-            $daterange = new \DatePeriod($pickupDate, $interval ,$dropoffDate);
-    
-            foreach($daterange as $day){
+            $daterange = new \DatePeriod($pickupDate, $interval, $dropoffDate);
+
+            foreach ($daterange as $day) {
                 $unavailabilityDay = new UnavailabilityDate();
                 $unavailabilityDay->setDay($day);
                 $unavailabilityDay->setCar($car);
@@ -87,7 +87,7 @@ class RentController extends AbstractController
     #[Route('/{id}', name: 'app_rent_delete', methods: ['POST'])]
     public function delete(Request $request, Rent $rent, RentRepository $rentRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$rent->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $rent->getId(), $request->request->get('_token'))) {
             $rentRepository->remove($rent, true);
         }
 
