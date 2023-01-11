@@ -42,6 +42,9 @@ class Car
     #[ORM\Column(length: 255)]
     private ?string $registration = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,6 +154,18 @@ class Car
     public function setRegistration(string $registration): self
     {
         $this->registration = $registration;
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }
