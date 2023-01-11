@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Car;
 use App\Entity\Rent;
 use App\Form\RentType;
 use App\Repository\RentRepository;
+use App\Repository\UnavailabilityDateRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +24,7 @@ class RentController extends AbstractController
     }
 
     #[Route('/new', name: 'app_rent_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, RentRepository $rentRepository, UnavailabilityDateRepository $unavailabilityDateRepository): Response
+    public function new(Request $request, RentRepository $rentRepository, Car $car, UnavailabilityDateRepository $unavailabilityDateRepository): Response
     {
         $rent = new Rent();
         $form = $this->createForm(RentType::class, $rent);
@@ -31,13 +33,15 @@ class RentController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $pickupDate = new \DateTime("2021-01-01");
             $dropoffDate = new \Datetime("2021-01-05");
-
-            $interval = DateInterval::createFromDateString('1 day');
-            $daterange = new DatePeriod($pickupDate, $interval ,$dropoffDate);
+            $car = new Car();
+            $car->setId(12);
+            $interval = \DateInterval::createFromDateString('1 day');
+            $daterange = new \DatePeriod($pickupDate, $interval ,$dropoffDate);
 
             foreach($daterange as $day){
                 $unavailabilityDay = new UnavailabilityDateRepository();
                 $unavailabilityDay->setDay($day);
+                $unavailabilityDay->setCar($car);
                 $unavailabilityDateRepository->save($unavailabilityDay, true);
             }
 
