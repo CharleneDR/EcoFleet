@@ -16,44 +16,20 @@ class UnavailabilityDate
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Car::class, inversedBy: 'unavailabilityDates')]
-    private Collection $car;
-
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $day = null;
 
-    public function __construct()
+    #[ORM\ManyToOne(inversedBy: 'unavailabilityDates')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Car $car = null;
+
+     public function __construct()
     {
-        $this->car = new ArrayCollection();
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    /**
-     * @return Collection<int, Car>
-     */
-    public function getCar(): Collection
-    {
-        return $this->car;
-    }
-
-    public function addCar(Car $car): self
-    {
-        if (!$this->car->contains($car)) {
-            $this->car->add($car);
-        }
-
-        return $this;
-    }
-
-    public function removeCar(Car $car): self
-    {
-        $this->car->removeElement($car);
-
-        return $this;
     }
 
     public function getDay(): ?\DateTimeInterface
@@ -67,4 +43,17 @@ class UnavailabilityDate
 
         return $this;
     }
+
+    public function getCar(): ?Car
+    {
+        return $this->car;
+    }
+
+    public function setCar(?Car $car): self
+    {
+        $this->car = $car;
+
+        return $this;
+    }
+
 }
