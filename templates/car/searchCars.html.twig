@@ -23,7 +23,6 @@
 					<th>Geerbox</th>
 					<th>Kilometers</th>
 					<th>Seats</th>
-					<th>Unavailabilitydate</th>
 					<th>Registration</th>
 					<th>actions</th>
 				</tr>
@@ -38,7 +37,6 @@
 						<td>{{ car.geerbox }}</td>
 						<td>{{ car.kilometers }}</td>
 						<td>{{ car.seats }}</td>
-						<td>{{ car.unavailabilitydate ? car.unavailabilitydate|date('Y-m-d') : '' }}</td>
 						<td>{{ car.registration }}</td>
 						<td>
 							<a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
