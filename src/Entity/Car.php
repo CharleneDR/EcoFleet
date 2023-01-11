@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CarRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CarRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: CarRepository::class)]
 class Car
@@ -34,9 +34,6 @@ class Car
     #[ORM\Column]
     private ?int $seats = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $unavailabilitydate = null;
-
     #[ORM\ManyToOne(inversedBy: 'cars')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Agency $city = null;
@@ -47,11 +44,14 @@ class Car
     #[ORM\ManyToMany(targetEntity: Rent::class, mappedBy: 'car')]
     private Collection $rents;
 
-    #[ORM\ManyToMany(targetEntity: UnavailabilityDate::class, mappedBy: 'car')]
-    private Collection $unavailabilityDates;
-
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
+
+    #[ORM\OneToMany(mappedBy: 'car', targetEntity: UnavailabilityDate::class)]
+    private Collection $unavailabilityDates;
+
+    #[ORM\Column]
+    private ?bool $Available = null;
 
     public function __construct()
     {
@@ -136,18 +136,6 @@ class Car
         return $this;
     }
 
-    public function getUnavailabilitydate(): ?\DateTimeInterface
-    {
-        return $this->unavailabilitydate;
-    }
-
-    public function setUnavailabilitydate(\DateTimeInterface $unavailabilitydate): self
-    {
-        $this->unavailabilitydate = $unavailabilitydate;
-
-        return $this;
-    }
-
     public function getCity(): ?Agency
     {
         return $this->city;
@@ -199,33 +187,6 @@ class Car
         return $this;
     }
 
-    /**
-     * @return Collection<int, UnavailabilityDate>
-     */
-    public function getUnavailabilityDates(): Collection
-    {
-        return $this->unavailabilityDates;
-    }
-
-    public function addUnavailabilityDate(UnavailabilityDate $unavailabilityDate): self
-    {
-        if (!$this->unavailabilityDates->contains($unavailabilityDate)) {
-            $this->unavailabilityDates->add($unavailabilityDate);
-            $unavailabilityDate->addCar($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUnavailabilityDate(UnavailabilityDate $unavailabilityDate): self
-    {
-        if ($this->unavailabilityDates->removeElement($unavailabilityDate)) {
-            $unavailabilityDate->removeCar($this);
-        }
-
-        return $this;
-    }
-
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -237,4 +198,48 @@ class Car
 
         return $this;
     }
+
+    /**
+     * @return ArrayCollection<int, UnavailabilityDate>
+     */
+    public function getUnavailabilityDates(): ArrayCollection
+    {
+        return $this->unavailabilityDates;
+    }
+
+    public function addUnavailabilityDate(UnavailabilityDate $unavailabilityDate): self
+    {
+        if (!$this->unavailabilityDates->contains($unavailabilityDate)) {
+            $this->unavailabilityDates->add($unavailabilityDate);
+            $unavailabilityDate->setCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUnavailabilityDate(UnavailabilityDate $unavailabilityDate): self
+    {
+        if ($this->unavailabilityDates->removeElement($unavailabilityDate)) {
+            // set the owning side to null (unless already changed)
+            if ($unavailabilityDate->getCar() === $this) {
+                $unavailabilityDate->setCar(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function isAvailable(): ?bool
+    {
+        return $this->Available;
+    }
+
+    public function setAvailable(bool $Available): self
+    {
+        $this->Available = $Available;
+
+        return $this;
+    }
+
+
 }

@@ -13,15 +13,17 @@ class AgencyFixtures extends Fixture
         $agency = new Agency();
         $agency->setCity('Paris');
         $manager->persist($agency);
+        $this->addReference('Paris', $agency);
+
         $agency1 = new Agency();
         $agency1->setCity('Lyon');
         $manager->persist($agency1);
+        $this->addReference('Lyon', $agency1);
+
         $agency2 = new Agency();
         $agency2->setCity('Nantes');
         $manager->persist($agency2);
-        $this->addReference('city', $agency);
-        // $product = new Product();
-        // $manager->persist($product);
+        $this->addReference('Nantes', $agency2);
 
         $manager->flush();
     }

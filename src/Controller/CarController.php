@@ -2,13 +2,17 @@
 
 namespace App\Controller;
 
+use DatePeriod;
+use DateInterval;
 use App\Entity\Car;
 use App\Form\CarType;
+use App\Form\SearchCarType;
+use App\Service\SearchCars;
 use App\Repository\CarRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/car')]
 class CarController extends AbstractController
@@ -18,6 +22,52 @@ class CarController extends AbstractController
     {
         return $this->render('car/index.html.twig', [
             'cars' => $carRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/search', name: 'app_car_result', methods: ['GET', 'POST'])]
+    public function result(CarRepository $carRepository, Request $request, SearchCars $searchCars): Response
+    {
+        $form = $this->createForm(SearchCarType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $errors = [];
+            $pickupDate = $form->getData()['pick-upDate'];
+            $dropoffDate = $form->getData()['drop-offDate'];
+            $location = $form->getData()['pick-upLocation'];
+            if ($pickupDate > $dropoffDate) {
+                $errors[] = 'Drop-off date must be before pick-up date';
+            }
+
+            if ($errors != []) {
+                return $this->render('car/searchCars.html.twig', [
+                    'form' => $form
+                ]);
+            }
+
+            $interval = \DateInterval::createFromDateString('1 day');
+            $datesOfLocation = new \DatePeriod($pickupDate, $interval ,$dropoffDate);
+            $unavailableDays = [];
+            foreach($datesOfLocation as $day){
+                $unavailableDays[] = $day;
+            }
+            $cars = $searchCars->findCorrespondingCars($unavailableDays, $location);
+
+
+            return $this->render('car/searchCars.html.twig', [
+                'form' => $form,
+                'cars' => $cars
+            ]);
+                
+        } else {
+            return $this->render('car/searchCars.html.twig', [
+                'form' => $form
+            ]);
+            }
+
+        return $this->render('car/searchCars.html.twig', [
+            'form' => $form
         ]);
     }
 
