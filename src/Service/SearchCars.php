@@ -25,10 +25,13 @@ class SearchCars
             $available = true;
             foreach ($datesOfLocation as $date)
             {
-                if($car->getUnavailabilityDates()->contains($date)) {
+                foreach($car->getUnavailabilityDates() as $unavailabilityDate)
+                {
+                if($unavailabilityDate->getDay() == $date) {
                     $available = false;
                     continue;
                 }
+            }
             }    
             if($available == true) {
             $correspondingCars[] = $car;
