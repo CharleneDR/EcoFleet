@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Car;
+use App\Entity\Agency;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,7 +17,7 @@ class SearchCarType extends AbstractType
     {
         $builder
             ->add('pick-upLocation', EntityType::class, [
-                'required' => required,
+                'required' => true,
                 'label' => 'Pick-up location',
                 'class' => Agency::class,
                 'choice_label' => 'city',
@@ -23,18 +25,18 @@ class SearchCarType extends AbstractType
                 'expanded' => false,
             ])
             ->add('pick-upDate', DateType::class, [
-                'required' => required,
+                'required' => true,
                 'widget' => 'choice',
                 'format' => 'yyyy/MM/dd',
                 'years' => range(date('Y'), date('Y')+1),
                 'label' => 'Pick-up date',
             ])
-            ->add('name', TextType::class, [
-                'required' => required,
+            ->add('destination', TextType::class, [
+                'required' => true,
                 'label' => 'Destination',
             ])
             ->add('drop-offDate', DateType::class, [
-                'required' => required,
+                'required' => true,
                 'widget' => 'choice',
                 'format' => 'yyyy/MM/dd',
                 'years' => range(date('Y'), date('Y')+1),
@@ -46,7 +48,7 @@ class SearchCarType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Program::class,
+            // Configure your form options here
         ]);
     }
 }

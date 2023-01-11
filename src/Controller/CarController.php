@@ -6,6 +6,8 @@ use DatePeriod;
 use DateInterval;
 use App\Entity\Car;
 use App\Form\CarType;
+use App\Form\SearchCarType;
+use App\Service\SearchCars;
 use App\Repository\CarRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,8 +25,8 @@ class CarController extends AbstractController
         ]);
     }
 
-    #[Route('/search', name: 'app_car_result', methods: ['GET'])]
-    public function result(CarRepository $carRepository): Response
+    #[Route('/search', name: 'app_car_result', methods: ['GET', 'POST'])]
+    public function result(CarRepository $carRepository, Request $request, SearchCars $searchCars): Response
     {
         $form = $this->createForm(SearchCarType::class);
         $form->handleRequest($request);
@@ -33,30 +35,39 @@ class CarController extends AbstractController
             $errors = [];
             $pickupDate = $form->getData()['pick-upDate'];
             $dropoffDate = $form->getData()['drop-offDate'];
+            $location = $form->getData()['pick-upLocation'];
             if ($pickupDate > $dropoffDate) {
                 $errors[] = 'Drop-off date must be before pick-up date';
             }
 
             if ($errors != []) {
-                return $this->render('registration/register.html.twig', [
-                    'registrationForm' => $form->createView(),
-                    'errors' => $errors,
+                return $this->render('car/searchCars.html.twig', [
+                    'form' => $form
                 ]);
             }
 
-//
+            $interval = \DateInterval::createFromDateString('1 day');
+            $datesOfLocation = new \DatePeriod($pickupDate, $interval ,$dropoffDate);
+            $unavailableDays = [];
+            foreach($datesOfLocation as $day){
+                $unavailableDays[] = $day;
+            }
+            $cars = $searchCars->findCorrespondingCars($unavailableDays, $location);
+
+
+            return $this->render('car/searchCars.html.twig', [
+                'form' => $form,
+                'cars' => $cars
+            ]);
+                
         } else {
-        $programs = $programRepository->findAll();
-        }
+            return $this->render('car/searchCars.html.twig', [
+                'form' => $form
+            ]);
+            }
 
-        return $this->renderForm('program/index.html.twig', [
-            'programs' => $programs,
+        return $this->render('car/searchCars.html.twig', [
             'form' => $form
-        ]);
-
-
-        return $this->render('car/index.html.twig', [
-            'cars' => $carRepository->findAll(),
         ]);
     }
 
