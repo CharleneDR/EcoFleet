@@ -57,7 +57,7 @@ class CarFixtures extends Fixture
             $car->setGeerbox($values['geerbox']);
             $car->setKilometers($values['kilometers']);
             $car->setSeats($values['seats']);
-            $car->setCity($this->getReference('city'));
+            $car->setCity($this->getReference($values['city']));
             $car->setRegistration($values['registration']);
             $car->setAvailable($values['available']);
             $car->setPicture($values['picture']);
