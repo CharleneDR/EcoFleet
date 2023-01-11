@@ -2,13 +2,15 @@
 
 namespace App\Controller;
 
+use DatePeriod;
+use DateInterval;
 use App\Entity\Car;
 use App\Form\CarType;
 use App\Repository\CarRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/car')]
 class CarController extends AbstractController
@@ -16,6 +18,43 @@ class CarController extends AbstractController
     #[Route('/', name: 'app_car_index', methods: ['GET'])]
     public function index(CarRepository $carRepository): Response
     {
+        return $this->render('car/index.html.twig', [
+            'cars' => $carRepository->findAll(),
+        ]);
+    }
+
+    #[Route('/search', name: 'app_car_result', methods: ['GET'])]
+    public function result(CarRepository $carRepository): Response
+    {
+        $form = $this->createForm(SearchCarType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $errors = [];
+            $pickupDate = $form->getData()['pick-upDate'];
+            $dropoffDate = $form->getData()['drop-offDate'];
+            if ($pickupDate > $dropoffDate) {
+                $errors[] = 'Drop-off date must be before pick-up date';
+            }
+
+            if ($errors != []) {
+                return $this->render('registration/register.html.twig', [
+                    'registrationForm' => $form->createView(),
+                    'errors' => $errors,
+                ]);
+            }
+
+//
+        } else {
+        $programs = $programRepository->findAll();
+        }
+
+        return $this->renderForm('program/index.html.twig', [
+            'programs' => $programs,
+            'form' => $form
+        ]);
+
+
         return $this->render('car/index.html.twig', [
             'cars' => $carRepository->findAll(),
         ]);
