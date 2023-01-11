@@ -50,6 +50,9 @@ class Car
     #[ORM\ManyToMany(targetEntity: UnavailabilityDate::class, mappedBy: 'car')]
     private Collection $unavailabilityDates;
 
+    #[ORM\Column(length: 255)]
+    private ?string $picture = null;
+
     public function __construct()
     {
         $this->rents = new ArrayCollection();
@@ -219,6 +222,18 @@ class Car
         if ($this->unavailabilityDates->removeElement($unavailabilityDate)) {
             $unavailabilityDate->removeCar($this);
         }
+
+        return $this;
+    }
+
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): self
+    {
+        $this->picture = $picture;
 
         return $this;
     }

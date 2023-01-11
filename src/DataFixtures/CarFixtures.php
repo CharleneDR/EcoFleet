@@ -16,7 +16,7 @@ class CarFixtures extends Fixture
             'geerbox' => 'Manual',
             'kilometers' => '45098',
             'seats' => '4',
-            'unavailabilitydate' => '2023-01-11',
+            'unavailabilitydate' => '2023-01-12',
             'city' => 'Paris',
             'registration' => 'EX-432-LK',
             'picture' => 'https://cdn.group.renault.com/ren/master/renault-new-cars/product-plans/megane/megane-bfb-ph2/2560x1440-responsive-format/renault-megane4-ph2-exterior-3d-001.jpg.ximg.xsmall.jpg/4f0f19c43a.jpg'
@@ -57,7 +57,7 @@ class CarFixtures extends Fixture
             $car->setGeerbox($values['geerbox']);
             $car->setKilometers($values['kilometers']);
             $car->setSeats($values['seats']);
-            $car->setUnavailabilitydate($values[new \DateTime('unavailabilitydate')]);
+            $car->setUnavailabilitydate(new \DateTime($values['unavailabilitydate']));
             $car->setCity($this->getReference('city'));
             $car->setRegistration($values['registration']);
             $car->setPicture($values['picture']);
