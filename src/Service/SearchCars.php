@@ -17,7 +17,7 @@ class SearchCars
 
     public function findCorrespondingCars(array $datesOfLocation, Agency $location): array 
     {
-        $allCars = $this->carRepository->findBy(['city' => $location, 'available' => true]);
+        $allCars = $this->carRepository->findBy(['city' => $location, 'Available' => true]);
         /*
         $correspondingCars = [];
         foreach ($datesOfLocation as $date)
