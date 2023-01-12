@@ -27,6 +27,7 @@ class UserFixtures extends Fixture
         );
 
         $employee->setPassword($hashedPassword);
+        $this->addReference('Employee', $employee);
         $manager->persist($employee);
 
         $company = new User();
@@ -53,4 +54,5 @@ class UserFixtures extends Fixture
 
         $manager->flush();
     }
+
 }

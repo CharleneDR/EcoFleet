@@ -78,9 +78,9 @@ class CarController extends AbstractController
             return $this->render('car/searchCars.html.twig', [
                 'form' => $form,
                 'cars' => $cars,
-                'rent' => $rents,
+                'rents' => $rents,
                 'locationDeparture' => $location->getCity(),
-                'locationArrival' => 'Nice',
+                'locationArrival' => $destination,
                 'startDate' => $pickupDate->format('Y-m-d'),
                 'endDate' => $dropoffDate->format('Y-m-d')
             ]);

@@ -46,7 +46,7 @@ class SearchCars
     
     public function findCarSharing($pickupDate, $dropoffDate, Agency $location, string $destination): array 
     {
-        $rents = $this->rentRepository->findBy(['locationDeparture' => $location, 'locationArrival' => 'destination', 'startDate' => $pickupDate, 'endDate' => $dropoffDate]);
+        $rents = $this->rentRepository->findBy(['locationDeparture' => $location->getCity(), 'locationArrival' => $destination, 'startDate' => $pickupDate, 'endDate' => $dropoffDate]);
         return $rents;
     }
 }
