@@ -16,22 +16,31 @@ class Rent
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $endDate = null;
+    #[ORM\Column(length: 255)]
+    private ?string $locationDeparture = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $locationArrival = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $startDate = null;
 
+    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    private ?\DateTimeInterface $endDate = null;
+
     #[ORM\ManyToMany(targetEntity: Employee::class, inversedBy: 'rents')]
     private Collection $employee;
 
-    #[ORM\ManyToMany(targetEntity: Car::class, inversedBy: 'rents')]
-    private Collection $car;
+    #[ORM\ManyToOne(inversedBy: 'rents')]
+    private ?Car $car = null;
+
+    #[ORM\ManyToMany(targetEntity: User::class, inversedBy: 'travels')]
+    private Collection $passenger;
 
     public function __construct()
     {
         $this->employee = new ArrayCollection();
-        $this->car = new ArrayCollection();
+        $this->passenger = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -39,14 +48,26 @@ class Rent
         return $this->id;
     }
 
-    public function getEndDate(): ?\DateTimeInterface
+    public function getLocationDeparture(): ?string
     {
-        return $this->endDate;
+        return $this->locationDeparture;
     }
 
-    public function setEndDate(\DateTimeInterface $endDate): self
+    public function setLocationDeparture(string $locationDeparture): self
     {
-        $this->endDate = $endDate;
+        $this->locationDeparture = $locationDeparture;
+
+        return $this;
+    }
+
+    public function getLocationArrival(): ?string
+    {
+        return $this->locationArrival;
+    }
+
+    public function setLocationArrival(string $locationArrival): self
+    {
+        $this->locationArrival = $locationArrival;
 
         return $this;
     }
@@ -59,6 +80,18 @@ class Rent
     public function setStartDate(\DateTimeInterface $startDate): self
     {
         $this->startDate = $startDate;
+
+        return $this;
+    }
+
+    public function getEndDate(): ?\DateTimeInterface
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(\DateTimeInterface $endDate): self
+    {
+        $this->endDate = $endDate;
 
         return $this;
     }
@@ -87,26 +120,38 @@ class Rent
         return $this;
     }
 
-    /**
-     * @return Collection<int, Car>
-     */
-    public function getCar(): Collection
+    public function getCar(): ?Car
     {
         return $this->car;
     }
 
-    public function addCar(Car $car): self
+    public function setCar(?Car $car): self
     {
-        if (!$this->car->contains($car)) {
-            $this->car->add($car);
+        $this->car = $car;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, User>
+     */
+    public function getPassenger(): Collection
+    {
+        return $this->passenger;
+    }
+
+    public function addPassenger(User $passenger): self
+    {
+        if (!$this->passenger->contains($passenger)) {
+            $this->passenger->add($passenger);
         }
 
         return $this;
     }
 
-    public function removeCar(Car $car): self
+    public function removePassenger(User $passenger): self
     {
-        $this->car->removeElement($car);
+        $this->passenger->removeElement($passenger);
 
         return $this;
     }
