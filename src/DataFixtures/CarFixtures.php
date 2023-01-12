@@ -19,7 +19,7 @@ class CarFixtures extends Fixture
             'city' => 'Paris',
             'registration' => 'EX-432-LK',
             'picture' => 'https://cdn.group.renault.com/ren/master/renault-new-cars/product-plans/megane/megane-bfb-ph2/2560x1440-responsive-format/renault-megane4-ph2-exterior-3d-001.jpg.ximg.xsmall.jpg/4f0f19c43a.jpg',
-            'available' => 0
+            'available' => 0,
         ],
         [
             'model' => 'A3',

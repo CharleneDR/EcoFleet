@@ -47,11 +47,11 @@ class Car
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: UnavailabilityDate::class)]
     private Collection $unavailabilityDates;
 
+    #[ORM\Column]
+    private ?bool $Available = null;
+
     #[ORM\OneToMany(mappedBy: 'car', targetEntity: Rent::class)]
     private Collection $rents;
-
-    #[ORM\ManyToOne(inversedBy: 'cars')]
-    private ?status $status = null;
 
     public function __construct()
     {
@@ -202,6 +202,18 @@ class Car
         return $this;
     }
 
+    public function isAvailable(): ?bool
+    {
+        return $this->Available;
+    }
+
+    public function setAvailable(bool $Available): self
+    {
+        $this->Available = $Available;
+
+        return $this;
+    }
+
     /**
      * @return Collection<int, Rent>
      */
@@ -228,18 +240,6 @@ class Car
                 $rent->setCar(null);
             }
         }
-
-        return $this;
-    }
-
-    public function getStatus(): ?status
-    {
-        return $this->status;
-    }
-
-    public function setStatus(?status $status): self
-    {
-        $this->status = $status;
 
         return $this;
     }
