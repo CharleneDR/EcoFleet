@@ -4,8 +4,10 @@ namespace App\Form;
 
 use App\Entity\Agency;
 use App\Entity\Car;
+use PhpParser\Parser\Multiple;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -26,7 +28,17 @@ class CarType extends AbstractType
                 'class' => Agency::class,
                 'choice_label' => 'city',
             ])
-            ->add('Available');
+            ->add('Available', ChoiceType::class, [
+                'multiple' => false,
+                'expanded' => false,
+                'choices' => [
+                    'Yes' => true,
+                    'No' => false,
+                ],
+                'row_attr' => [
+                    'class' => 'd-flex flex-row'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
