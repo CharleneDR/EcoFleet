@@ -1,6 +1,8 @@
 $background: #EDEAE5;
 $blueDuck: #026670;
 $yellowChick: #FCE181;
+$color4: #9FEDD7;
+$color5: #FEF9C7;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -8,24 +10,24 @@ body {
     background-color: $background;
 }
 
-input {
-    text-align: center;
-    vertical-align: center;
-    color: #000;
-    border-radius: 0px !important;
-    border-color: #000 !important;
-    width: 200px;
-    height: 30px;
+// input {
+//     text-align: center;
+//     vertical-align: center;
+//     color: #000;
+//     border-radius: 0px !important;
+//     border-color: #000 !important;
+//     width: 200px;
+//     height: 30px;
 
-    &:focus {
-        border-color: blue !important;
-        box-shadow: none !important;
-    }
+//     &:focus {
+//         border-color: blue !important;
+//         box-shadow: none !important;
+//     }
 
-    border-width: 1px !important;
-    background-color: #EFEDED !important;
+//     border-width: 1px !important;
+//     background-color: #EFEDED !important;
 
-}
+// }
 
 select {
     text-align: center;
@@ -44,9 +46,9 @@ select {
     }
 }
 
-label {
-    color: white;
-}
+// label {
+//     color: white;
+// }
 
 .searchCar {
     max-width: 250px !important;
@@ -81,4 +83,8 @@ label {
 
 .blueDuck {
     background-color: $blueDuck;
+}
+
+.login {
+    background-color: $yellowChick;
 }
