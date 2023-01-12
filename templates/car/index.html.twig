@@ -6,36 +6,38 @@
 {% block body %}
 	<h1 class="display-2">Cars</h1>
 
-	<div class="d-flex justify-content-end align-items-end m-3">
-		<button class="btn button rounded " type="button">
-			<a class="text-dark text-decoration-none" href="{{ path('app_car_new') }}">Add new car</a>
-		</button>
-	</div>
-	<div class="mt-5 d-flex flex-column align-items-center">
-		{% for car in cars %}
+	<tbody>
+		<div class="d-flex justify-content-center align-items-end m-3">
+			<button class="btn button rounded w-25" type="button">
+				<a class="text-dark text-decoration-none" href="{{ path('app_car_new') }}">Add new car</a>
+			</button>
+		</div>
+		<div class="mt-5 d-flex flex-column align-items-center">
+			{% for car in cars %}
 
-			<div class="card m-3 rounded-0 border-bottom border-grey" style="width: 750px;">
-				<div class="row g-0">
-					<div class="col-md-4 img-car rounded-start" style="background-image: url({{car.picture}})"></div>
-					<div class="col-md-8">
-						<div class="card-body py-2">
-							<div class="d-flex flex-row justify-content-between">
-								<h5 class="card-title mb-0">{{car.model}}
-									-
-									{{car.brand}}</h5>
-								<div class="d-flex flex-row">
-									<div id="carbon"></div>
-									<div class="ps-1">
-										{% if car.available == true %}
-											<div class="alert alert-success p-1" role="alert">
-												Available
-											</div>
-										{% endif %}
-										{% if car.available == false %}
-											<div class="alert alert-danger p-1" role="alert">
-												Unavailable
-											</div>
-										{% endif %}
+				<div class="card m-3 rounded-0 border-bottom border-grey" style="width: 750px;">
+					<div class="row g-0">
+						<div class="col-md-4 img-car rounded-4" style="background-image: url({{car.picture}})"></div>
+						<div class="col-md-8">
+							<div class="card-body py-2">
+								<div class="d-flex flex-row justify-content-between">
+									<h5 class="card-title mb-0">{{car.model}}
+										-
+										{{car.brand}}</h5>
+									<div class="d-flex flex-row">
+										<div id="carbon"></div>
+										<div class="ps-1">
+											{% if car.available == true %}
+												<div class=" text-success p-1" role="alert">
+													Available
+												</div>
+											{% endif %}
+											{% if car.available == false %}
+												<div class="alert text-danger p-1" role="alert">
+													Unavailable
+												</div>
+											{% endif %}
+										</div>
 									</div>
 								</div>
 							</div>
@@ -65,6 +67,5 @@
 				<td colspan="10">no records found</td>
 			</tr>
 		{% endfor %}
-	</div>
-
-{% endblock %}
+	</tbody>
+</div>{% endblock %}
