@@ -20,6 +20,14 @@
 	</div>
 	{{ form_end(form) }}
 
+	{% if rents is defined %}
+		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
+			{% for rent in rents %}
+				{% include "car/_carSharingCard.html.twig" %}
+			{% endfor %}
+		</div>
+	{% endif %}
+
 	{% if cars is defined %}
 		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
 			{% for car in cars %}
