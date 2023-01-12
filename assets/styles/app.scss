@@ -1,8 +1,8 @@
-$background: #EDEAE5;
+$background: white;
 $blueDuck: #026670;
 $yellowChick: #FCE181;
-$color4: #9FEDD7;
-$color5: #FEF9C7;
+$color4: white;
+$color5: white;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -85,7 +85,11 @@ body {
 }
 
 .blueDuck {
-    background-color: $blueDuck;
+    background-image: linear-gradient(rgba(31, 31, 31, 0.289),
+            rgba(57, 57, 57, 0.6)), url("/assets/images/roadmini.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
 }
 
 .img-car {
@@ -120,6 +124,7 @@ body {
             rgba(57, 57, 57, 0.6)), url("/assets/images/road.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: top;
 
 }
 
@@ -190,7 +195,7 @@ a {
     padding-bottom: 5px;
     background-color: $yellowChick;
     color: black;
-    font-weight: bold;
+    // font-weight: bold;
     box-shadow: 10px 10px 0px grey;
 
     a {
