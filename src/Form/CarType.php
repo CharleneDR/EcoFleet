@@ -36,9 +36,6 @@ class CarType extends AbstractType
                     'Yes' => true,
                     'No' => false,
                 ],
-                'row_attr' => [
-                    'class' => 'd-flex flex-row'
-                ]
             ]);
     }
 
