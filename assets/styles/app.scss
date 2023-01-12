@@ -16,10 +16,12 @@ body {
     text-align: center;
     vertical-align: center;
     color: #000;
-    border-radius: 0px !important;
+    border-radius: 5px !important;
     border-color: #000 !important;
     width: 200px;
     height: 30px;
+    margin-left: 10px;
+    height: 45px;
 
     &:focus {
         box-shadow: none !important;
@@ -34,12 +36,11 @@ body {
     text-align: center;
     vertical-align: center;
     color: #000;
-    border-radius: 0px !important;
+    border-radius: 5px !important;
     border-color: #000 !important;
-    border-width: 1px !important;
-    background-color: #EFEDED !important;
     width: 200px;
-    height: 30px;
+    height: 45px;
+    background-color: #EFEDED !important;
 
     &:focus {
         border-color: blue($color: #000000) !important;
@@ -196,7 +197,6 @@ a {
     background-color: $yellowChick;
     color: black;
     // font-weight: bold;
-    box-shadow: 10px 10px 0px grey;
 
     a {
         text-decoration: none;
