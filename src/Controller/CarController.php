@@ -73,10 +73,12 @@ class CarController extends AbstractController
             $unavailableDays[] = $day;
 
             $cars = $searchCars->findCorrespondingCars($unavailableDays, $location);
+            $rents = $searchCars->findCarSharing($pickupDate, $dropoffDate, $location, $destination);
 
             return $this->render('car/searchCars.html.twig', [
                 'form' => $form,
                 'cars' => $cars,
+                'rent' => $rents,
                 'locationDeparture' => $location->getCity(),
                 'locationArrival' => 'Nice',
                 'startDate' => $pickupDate->format('Y-m-d'),

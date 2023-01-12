@@ -49,12 +49,12 @@ class RentController extends AbstractController
         return $this->redirectToRoute('app_home');
     }
 
-    #[Route('/{id}', name: 'app_rent_show', methods: ['GET'])]
-    public function show(Rent $rent): Response
+    #[Route('/{id}', name: 'app_rent_carSharing', methods: ['GET'])]
+    public function carSharing(Rent $rent): Response
     {
-        return $this->render('rent/show.html.twig', [
-            'rent' => $rent,
-        ]);
+        if($rent->getPassenger() < $rent->getCar()->getSeats()) {
+            $rent->addPassenger($this->$user);
+        }
     }
 
     #[Route('/{id}/edit', name: 'app_rent_edit', methods: ['GET', 'POST'])]
