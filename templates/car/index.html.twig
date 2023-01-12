@@ -4,13 +4,13 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Cars</h1>
+	<h1 class="display-2">Cars</h1>
 
 	<tbody>
 		<div class="mt-5 d-flex flex-column align-items-center">
 			{% for car in cars %}
 
-				<div class="card m-3" style="width: 750px;">
+				<div class="card m-3 rounded-0 border-bottom border-grey" style="width: 750px;">
 					<div class="row g-0">
 						<div class="col-md-4 img-car rounded-start" style="background-image: url({{car.picture}})"></div>
 						<div class="col-md-8">
