@@ -83,3 +83,10 @@ body {
 .blueDuck {
     background-color: $blueDuck;
 }
+
+.img-car {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-right: solid $blueDuck 1px;
+}
