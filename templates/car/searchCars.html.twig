@@ -19,7 +19,7 @@
 		</div>
 	</div>
 	{{ form_end(form) }}
-
+	<h2 class="mt-4 mb-2">Share a car</h2>
 	{% if rents is defined %}
 		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
 			{% for rent in rents %}
@@ -27,6 +27,8 @@
 			{% endfor %}
 		</div>
 	{% endif %}
+
+	<h2 class="mt-4 mb-2">Book de car</h2>
 
 	{% if cars is defined %}
 		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">

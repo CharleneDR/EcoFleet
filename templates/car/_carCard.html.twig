@@ -1,6 +1,6 @@
 <div class="card mb-3" style="width: 750px;">
-	<div class="row g-0">
-		<div class="col-md-4 img-car rounded-start" style="background-image: url({{car.picture}})"></div>
+	<div class="row g-0 h-100">
+		<div class="h-100 col-md-4 img-car rounded-start" style="background-image: url({{car.picture}})"></div>
 		<div class="col-md-8">
 			<div class="card-body py-2">
 				<div class="d-flex flex-row justify-content-between">
@@ -24,9 +24,13 @@
 				<p class="card-text mb-0">{{car.seats}}
 					seats
 				</p>
+				<div class="d-flex justify-content-end">
+					<a href="{{ path("app_rent_new", {'id':car.id, 'locationDeparture':locationDeparture, 'locationArrival':locationArrival, 'startDate':startDate, 'endDate':endDate}) }}" class="btn button rounded">Book</a>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div>
-		<span class="d-none energies">{{car.fuel}}<span></div>
+		<div>
+			<span class="d-none energies">{{car.fuel}}</span>
 		</div>
+	</div>
+</div>
