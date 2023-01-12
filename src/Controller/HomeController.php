@@ -28,7 +28,8 @@ class HomeController extends AbstractController
 
             if ($errors != []) {
                 return $this->render('home/index.html.twig', [
-                    'form' => $form
+                    'form' => $form,
+                    'errors' => $errors
                 ]);
             }
 
