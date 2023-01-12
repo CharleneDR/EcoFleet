@@ -252,8 +252,8 @@ h2 {
     color: #000;
     border-radius: 0px !important;
     border-color: #000 !important;
-    width: 300px;
-    height: 30px;
+    width: 400px;
+    height: 35px;
 }
 
 .edit select {
@@ -262,7 +262,7 @@ h2 {
     color: #000;
     border-radius: 0px !important;
     border-color: #000 !important;
-    width: 300px;
+    width: 400px;
     height: 35px;
 }
 
@@ -270,8 +270,19 @@ h2 {
     width: 100px;
 }
 
-input {
-    height: 30px;
+.formCar input {
+    height: 35px;
+    border: 1px solid black;
+}
+
+.formCar label {
+    margin-bottom: 5px;
+}
+
+select {
+    height: 35px;
+    background-color: white;
+    border: 1px solid black;
 }
 
 .larger {

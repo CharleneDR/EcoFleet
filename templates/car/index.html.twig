@@ -40,32 +40,32 @@
 										</div>
 									</div>
 								</div>
-								<p class="card-text mb-2">
-									<small>{{car.registration}}</small>
-								</p>
-								<p class="card-text mb-0">{{car.geerbox}}
-									gears -
-									{{car.fuel}}
-									-
-									{{car.kilometers}}km</p>
-								<p class="card-text mb-0">{{car.seats}}
-									seats
-								</p>
-								<p class="card-text mb-0">{{car.city.city}}
-								</p>
-								<div class="d-flex justify-content-end">
-									<a href="{{ path('app_car_edit', {'id': car.id}) }}" class="btn button rounded m-1">Edit</a>
-								</div>
+							</div>
+							<p class="card-text mb-2">
+								<small>{{car.registration}}</small>
+							</p>
+							<p class="card-text mb-0">{{car.geerbox}}
+								gears -
+								{{car.fuel}}
+								-
+								{{car.kilometers}}km</p>
+							<p class="card-text mb-0">{{car.seats}}
+								seats
+							</p>
+							<p class="card-text mb-0">{{car.city.city}}
+							</p>
+							<div class="d-flex justify-content-end">
+								<a href="{{ path('app_car_edit', {'id': car.id}) }}" class="btn button rounded m-1">Edit</a>
 							</div>
 						</div>
 					</div>
-					<div id="energy" class="d-none">{{car.fuel}}</div>
 				</div>
-			{% else %}
-				<tr>
-					<td colspan="10">no records found</td>
-				</tr>
-			{% endfor %}
-		</div>
+				<div id="energy" class="d-none">{{car.fuel}}</div>
+			</div>
+		{% else %}
+			<tr>
+				<td colspan="10">no records found</td>
+			</tr>
+		{% endfor %}
 	</tbody>
-</tbody></table>{% endblock %}
+</div>{% endblock %}
