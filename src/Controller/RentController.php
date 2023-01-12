@@ -34,8 +34,8 @@ class RentController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $pickupDate = $form->getData()['pick-upDate'];
-            $dropoffDate = $form->getData()['drop-offDate'];
+            $pickupDate = $form->getData()['pickUpDate'];
+            $dropoffDate = $form->getData()['dropOffDate'];
             $car = $carRepository->findOneBy(["id" => $id]);
     
             $interval = \DateInterval::createFromDateString('1 day');

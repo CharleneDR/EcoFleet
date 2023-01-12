@@ -175,7 +175,7 @@ class Car
     /**
      * @return ArrayCollection<int, UnavailabilityDate>
      */
-    public function getUnavailabilityDates(): ArrayCollection
+    public function getUnavailabilityDates(): Collection
     {
         return $this->unavailabilityDates;
     }

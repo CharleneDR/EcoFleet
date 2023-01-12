@@ -16,7 +16,7 @@ class SearchCarType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('pick-upLocation', EntityType::class, [
+            ->add('pickUpLocation', EntityType::class, [
                 'required' => true,
                 'label' => 'Pick-up location',
                 'class' => Agency::class,
@@ -24,23 +24,34 @@ class SearchCarType extends AbstractType
                 'multiple' => false,
                 'expanded' => false,
             ])
-            ->add('pick-upDate', DateType::class, [
+            ->add('pickUpDate', DateType::class, [
                 'required' => true,
-                'widget' => 'choice',
+                'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
                 'years' => range(date('Y'), date('Y')+1),
                 'label' => 'Pick-up date',
+                'html5' => false,
+                'attr' => [
+                    'placeholder' => "2023/01/14"
+                ]
             ])
             ->add('destination', TextType::class, [
                 'required' => true,
                 'label' => 'Destination',
+                'attr' => [
+                    'placeholder' => "Bordeaux"
+                ]
             ])
-            ->add('drop-offDate', DateType::class, [
+            ->add('dropOffDate', DateType::class, [
                 'required' => true,
-                'widget' => 'choice',
+                'widget' => 'single_text',
                 'format' => 'yyyy/MM/dd',
                 'years' => range(date('Y'), date('Y')+1),
                 'label' => 'Drop-off date',
+                'html5' => false,
+                'attr' => [
+                    'placeholder' => "2023/01/13"
+                ]
             ])
         ;
     }
