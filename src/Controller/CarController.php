@@ -2,11 +2,8 @@
 
 namespace App\Controller;
 
-<<<<<<< HEAD
-use DateTime;
-=======
 use App\Entity\Agency;
->>>>>>> dev
+use DateTime;
 use DatePeriod;
 use DateInterval;
 use App\Entity\Car;
@@ -15,7 +12,6 @@ use App\Form\SearchCarType;
 use App\Repository\AgencyRepository;
 use App\Service\SearchCars;
 use App\Repository\CarRepository;
-use App\Repository\AgencyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -83,13 +79,6 @@ class CarController extends AbstractController
                 'form' => $form,
                 'cars' => $cars
             ]);
-<<<<<<< HEAD
-=======
-        } else {
-            return $this->render('car/searchCars.html.twig', [
-                'form' => $form
-            ]);
->>>>>>> dev
         }
 
         return $this->render('car/searchCars.html.twig', [
