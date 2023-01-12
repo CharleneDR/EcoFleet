@@ -8,7 +8,7 @@ $color5: #FEF9C7;
 
 body {
     background-color: $background;
-    height: 100vh;
+    height: 100%;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -71,7 +71,8 @@ body {
 }
 
 .card {
-    border: 3px solid $blueDuck;
+    border: 2px solid $blueDuck;
+    height: 171px;
 }
 
 .button {
@@ -175,7 +176,6 @@ a {
 
     &:hover {
         color: black;
-        text-decoration: underline;
     }
 }
 
@@ -185,6 +185,16 @@ a {
     padding-bottom: 5px;
     background-color: $yellowChick;
     color: black;
+
+    a {
+        text-decoration: none;
+        color: #000;
+
+        &:hover {
+            color: black;
+            text-decoration: underline;
+        }
+    }
 }
 
 h1 {
@@ -200,4 +210,26 @@ h1 {
     height: 50px;
     margin-left: 10px;
     margin-bottom: 15px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+}
+
+
+.leafLogo {
+    width: 20px;
+}
+
+.book {
+    position: absolute;
+    bottom: 10px;
+    right: 18px;
+    z-index: 1;
+}
+
+.carSharing {
+    background-color: $color4;
+    zoom: 100%;
 }

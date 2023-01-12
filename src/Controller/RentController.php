@@ -65,11 +65,14 @@ class RentController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_rent_carSharing', methods: ['GET'])]
-    public function carSharing(Rent $rent): Response
+    public function carSharing(Rent $rent, RentRepository $rentRepository): Response
     {
-        if($rent->getPassenger() < $rent->getCar()->getSeats()) {
-            $rent->addPassenger($this->$user);
+        if(sizeof($rent->getPassenger()) < $rent->getCar()->getSeats()) {
+            /** @var User $user */
+            $rent->addPassenger($this->getUser());
+            $rentRepository->save($rent, true);
         }
+        return $this->redirectToRoute('app_home');
     }
 
     #[Route('/{id}/edit', name: 'app_rent_edit', methods: ['GET', 'POST'])]
