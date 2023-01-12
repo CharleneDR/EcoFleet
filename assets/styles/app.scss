@@ -1,7 +1,8 @@
 $background: #EDEAE5;
 $blueDuck: #026670;
 $yellowChick: #FCE181;
-
+$color4: #9FEDD7;
+$color5: #FEF9C7;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -81,5 +82,9 @@ body {
 }
 
 .blueDuck {
+    background-color: $blueDuck;
+}
+
+.login {
     background-color: $blueDuck;
 }
