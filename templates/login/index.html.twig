@@ -3,7 +3,7 @@
 {% block body %}
 
 	<main class="container">
-		<div class="row d-md-flex mb-3 justify-content-md-center mt-5 text-center">
+		<div class="row d-flex mb-3 justify-content-md-center mt-5 text-center">
 
 			<img class="mb-3" src="{{asset('build/images/sharing_car.svg')}}" alt="" width="90" height="90">
 			<h1 class="h3 mb-3 fw-normal">Welcome to the fleet management service of Spectra Society !<br>
@@ -32,11 +32,11 @@
 				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 				<input type="hidden" name="_target_path" value="/login/redirect">
 			</div>
-			<div class="row d-md-flex justify-content-md-center">
+			<div class="row d-flex justify-content-center">
 				<button class="btn btn-lg button" type="submit">Login</button>
 			</div>
 		</form>
-		<div class="d-md-flex justify-content-center">
+		<div class="d-flex justify-content-center">
 			<p class="mt-5 mb-3 text-muted">&copy; Hackathon Wild Code School 2023</p>
 		</div>
 	</div>
