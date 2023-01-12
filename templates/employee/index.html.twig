@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard User
+{% endblock %}
+
+{% block body %}
+	<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
+		<h1 class="mb-5">My journeys</h1>
+		{% for rent in rents %}
+			{{ include('employee/_travelCard.html.twig') }}
+		{% endfor %}
+	</div>
+{% endblock %}
