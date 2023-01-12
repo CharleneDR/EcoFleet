@@ -16,11 +16,11 @@
 	</nav>
 	<h1>Your cars</h1>
 
-	<table class="table">
+	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>Model</th>
 				<th>Brand</th>
+				<th>Model</th>
 				<th>Fuel</th>
 				<th>Geerbox</th>
 				<th>Kilometers</th>
@@ -34,11 +34,12 @@
 		<tbody>
 			{% for car in cars %}
 				<tr>
-					<td>{{ car.model }}</td>
 					<td>{{ car.brand }}</td>
+					<td>{{ car.model }}</td>
 					<td>{{ car.fuel }}</td>
 					<td>{{ car.geerbox }}</td>
-					<td>{{ car.kilometers }}</td>
+					<td>{{ car.kilometers }}
+						km</td>
 					<td>{{ car.seats }}</td>
 					<td>{{ car.registration }}</td>
 					<td>
@@ -54,11 +55,11 @@
 						{% endif %}
 					</td>
 					<td>
-						<img class="w-25" src="{{ car.picture }}">
+						<img class="img-car" src="{{ car.picture }}">
 					</td>
 					<td>
-						<a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
-						<a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>
+						<a href="{{ path('app_car_show', {'id': car.id}) }}">Detail</a>
+						<a href="{{ path('app_car_edit', {'id': car.id}) }}">Edit</a>
 					</td>
 				</tr>
 			{% else %}
