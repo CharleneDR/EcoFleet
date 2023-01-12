@@ -188,3 +188,27 @@ a {
 h1 {
     text-align: center;
 }
+
+.edit input {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    width: 300px;
+    height: 30px;
+}
+
+.edit select {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    width: 300px;
+    height: 35px;
+}
+
+.edit label {
+    width: 100px;
+}

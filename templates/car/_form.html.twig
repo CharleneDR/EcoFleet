@@ -1,11 +1,17 @@
-<div class="container">
-	<div class="row">
-		<div class="col-xs-12">
-			{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
-			{{ form_start(form) }}
-			{{ form_widget(form) }}
-			<button class="btn button rounded m-1">{{ button_label|default('Save') }}</button>
-			{{ form_end(form) }}
-		</div>
+<div class="edit d-flex justify-content-center">
+	<div class="justify-content-center">
+		{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
+		{{ form_start(form, {'attr': {'class': ''}})}}
+		{{ form_row(form.model) }}
+		{{ form_row(form.brand) }}
+		{{ form_row(form.fuel) }}
+		{{ form_row(form.geerbox) }}
+		{{ form_row(form.kilometers) }}
+		{{ form_row(form.seats) }}
+		{{ form_row(form.city) }}
+		{{ form_row(form.registration) }}
+		{{form_row(form.Available, {'row_attr': {'class': 'd-flex flex-row'}})}}
+		<button class="btn button rounded mt-3">{{ button_label|default('Save') }}</button>
+		{{ form_end(form) }}
 	</div>
 </div>
