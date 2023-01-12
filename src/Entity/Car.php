@@ -50,6 +50,9 @@ class Car
     #[ORM\Column]
     private ?bool $Available = null;
 
+    #[ORM\OneToMany(mappedBy: 'car', targetEntity: Rent::class)]
+    private Collection $rents;
+
     public function __construct()
     {
         $this->rents = new ArrayCollection();
@@ -207,6 +210,36 @@ class Car
     public function setAvailable(bool $Available): self
     {
         $this->Available = $Available;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rent>
+     */
+    public function getRents(): Collection
+    {
+        return $this->rents;
+    }
+
+    public function addRent(Rent $rent): self
+    {
+        if (!$this->rents->contains($rent)) {
+            $this->rents->add($rent);
+            $rent->setCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRent(Rent $rent): self
+    {
+        if ($this->rents->removeElement($rent)) {
+            // set the owning side to null (unless already changed)
+            if ($rent->getCar() === $this) {
+                $rent->setCar(null);
+            }
+        }
 
         return $this;
     }
