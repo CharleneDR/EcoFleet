@@ -46,7 +46,7 @@ class RentController extends AbstractController
 
         $rentRepository->save($rent, true);
 
-        return $this->redirectToRoute('app_login');
+        return $this->redirectToRoute('app_home');
     }
 
     #[Route('/{id}', name: 'app_rent_show', methods: ['GET'])]
