@@ -1,5 +1,85 @@
-body {
-    background-color: lightgray;
-}
+$background: #EDEAE5;
+$blueDuck: #026670;
+$yellowChick: #FCE181;
+
 
 @import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: $background;
+}
+
+input {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    width: 200px;
+    height: 30px;
+
+    &:focus {
+        border-color: blue !important;
+        box-shadow: none !important;
+    }
+
+    border-width: 1px !important;
+    background-color: #EFEDED !important;
+
+}
+
+select {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    border-width: 1px !important;
+    background-color: #EFEDED !important;
+    width: 200px;
+    height: 30px;
+
+    &:focus {
+        border-color: blue($color: #000000) !important;
+        box-shadow: none !important;
+    }
+}
+
+label {
+    color: white;
+}
+
+.searchCar {
+    max-width: 250px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.formSearchCar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-items: center;
+    width: auto;
+}
+
+#returnLogo {
+    height: 20px;
+}
+
+.card {
+    border: 1px solid $blueDuck;
+}
+
+.button {
+    background-color: $yellowChick;
+
+    &:hover {
+        background-color: darken(#FCE181, 10%);
+    }
+}
+
+.blueDuck {
+    background-color: $blueDuck;
+}

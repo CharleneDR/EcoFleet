@@ -1,0 +1,35 @@
+<div class="card mb-3" style="max-width: 750px;">
+	<div class="row g-0">
+		<div class="col-md-4">
+			<img src="{{car.picture}}" class="img-fluid rounded-start" alt="...">
+		</div>
+		<div class="col-md-8">
+			<div class="card-body py-2">
+				<div class="d-flex flex-row justify-content-between">
+					<h5 class="card-title mb-0">{{car.model}}
+						-
+						{{car.brand}}</h5>
+					<div class="d-flex flex-row">
+						<div id="carbon"></div>
+						<div class="ps-1">kgCO2</div>
+					</div>
+				</div>
+				<p class="card-text mb-2">
+					<small>{{car.registration}}</small>
+				</p>
+				<p class="card-text mb-0">{{car.geerbox}}
+					gears -
+					{{car.fuel}}
+					-
+					{{car.kilometers}}km</p>
+				<p class="card-text mb-0">{{car.seats}}
+					seats
+				</p>
+				<div class="d-flex justify-content-end">
+					<a href="#" class="btn button rounded">Book</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="energy" class="d-none">{{car.fuel}}</div>
+</div>

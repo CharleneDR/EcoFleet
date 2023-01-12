@@ -18,19 +18,26 @@ class SearchCars
     public function findCorrespondingCars(array $datesOfLocation, Agency $location): array 
     {
         $allCars = $this->carRepository->findBy(['city' => $location, 'Available' => true]);
-        /*
+
         $correspondingCars = [];
-        foreach ($datesOfLocation as $date)
+        foreach ($allCars as $car)
         {
-            foreach ($allCars as $car)
+            $available = true;
+            foreach ($datesOfLocation as $date)
             {
-                if(!in_array($date, $car->getUnavailabilityDates())) {
-                    $correspondingCars[] = $car;
+                foreach($car->getUnavailabilityDates() as $unavailabilityDate)
+                {
+                if($unavailabilityDate->getDay() == $date) {
+                    $available = false;
+                    continue;
                 }
             }
+            }    
+            if($available == true) {
+            $correspondingCars[] = $car;
+            }
+
         }
-        */
-        
-        return $allCars;
+        return $correspondingCars;
     }
 }
