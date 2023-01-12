@@ -1,7 +1,8 @@
 <div class="edit d-flex justify-content-center">
-	<div class="justify-content-center">
+	<div class="justify-content-center formCar">
 		{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
 		{{ form_start(form, {'attr': {'class': ''}})}}
+		{{ form_row(form.picture) }}
 		{{ form_row(form.model) }}
 		{{ form_row(form.brand) }}
 		{{ form_row(form.fuel) }}
