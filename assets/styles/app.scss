@@ -8,7 +8,7 @@ $color5: #FEF9C7;
 
 body {
     background-color: $background;
-    height: 100%;
+    height: 100vh;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -67,7 +67,7 @@ body {
 }
 
 #returnLogo {
-    height: 20px;
+    height: 35px;
 }
 
 .card {
@@ -121,6 +121,7 @@ body {
             rgba(57, 57, 57, 0.6)), url("/assets/images/road.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 .home input {
