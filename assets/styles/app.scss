@@ -7,6 +7,7 @@ $yellowChick: #FCE181;
 
 body {
     background-color: $background;
+    height: 100vh;
 }
 
 .searchCar input {
@@ -19,7 +20,6 @@ body {
     height: 30px;
 
     &:focus {
-        border-color: blue !important;
         box-shadow: none !important;
     }
 
@@ -82,28 +82,4 @@ body {
 
 .blueDuck {
     background-color: $blueDuck;
-}
-
-.img-car {
-    max-width: 80%;
-}
-
-.table {
-    margin: 20px;
-    border: solid black 2px;
-    text-align: center;
-    vertical-align: center;
-}
-
-th {
-    background-color: $blueDuck;
-}
-
-a {
-    text-decoration: none;
-    color: #000;
-}
-
-h1 {
-    text-align: center;
 }
