@@ -5,14 +5,17 @@ namespace App\Service;
 use App\Entity\Car;
 use App\Entity\Agency;
 use App\Repository\CarRepository;
+use App\Repository\RentRepository;
 
 class SearchCars
 {
     private CarRepository $carRepository;
+    private RentRepository $rentRepository;
 
-    public function __construct (CarRepository $carRepository)
+    public function __construct (CarRepository $carRepository, RentRepository $rentRepository)
     {
         $this->carRepository = $carRepository;
+        $this->rentRepository = $rentRepository;
     }
 
     public function findCorrespondingCars(array $datesOfLocation, Agency $location): array 
@@ -39,5 +42,11 @@ class SearchCars
 
         }
         return $correspondingCars;
+    }
+    
+    public function findCarSharing($pickupDate, $dropoffDate, Agency $location, string $destination): array 
+    {
+        $rents = $this->rentRepository->findBy(['locationDeparture' => $location->getCity(), 'locationArrival' => $destination, 'startDate' => $pickupDate, 'endDate' => $dropoffDate]);
+        return $rents;
     }
 }

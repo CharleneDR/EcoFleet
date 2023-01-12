@@ -71,7 +71,7 @@ body {
 }
 
 .card {
-    border: 1px solid $blueDuck;
+    border: 3px solid $blueDuck;
 }
 
 .button {
@@ -84,6 +84,13 @@ body {
 
 .blueDuck {
     background-color: $blueDuck;
+}
+
+.img-car {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-right: solid $blueDuck 1px;
 }
 
 .login {
