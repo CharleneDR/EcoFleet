@@ -7,7 +7,7 @@ $color5: #FEF9C7;
 @import "~bootstrap/scss/bootstrap";
 
 body {
-    background-color: $background;
+    background-color: white;
     height: 100vh;
     font-family: 'Montserrat', sans-serif;
 }
@@ -71,8 +71,8 @@ body {
 }
 
 .card {
-    border: 2px solid $blueDuck;
-    height: 171px;
+    border: none;
+    height: 230px;
 }
 
 .button {
@@ -92,7 +92,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border-right: solid $blueDuck 1px;
 }
 
 .login {
@@ -231,7 +230,7 @@ h2 {
 
 .book {
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     right: 18px;
     z-index: 1;
 }
