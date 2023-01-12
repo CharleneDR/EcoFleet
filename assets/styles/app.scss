@@ -76,6 +76,7 @@ body {
 
 .button {
     background-color: $yellowChick;
+    width: 100px;
 
     &:hover {
         background-color: darken(#FCE181, 10%);
@@ -88,6 +89,7 @@ body {
 
 .login {
     background-color: $blueDuck;
+    width: 500px;
 }
 
 
@@ -180,4 +182,15 @@ a {
 
 h1 {
     text-align: center;
+}
+
+#slogan {
+    margin-top: 10px;
+}
+
+#plant {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-bottom: 15px;
 }
