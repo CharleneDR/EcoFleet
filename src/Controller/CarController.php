@@ -33,9 +33,9 @@ class CarController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $errors = [];
-            $pickupDate = $form->getData()['pick-upDate'];
-            $dropoffDate = $form->getData()['drop-offDate'];
-            $location = $form->getData()['pick-upLocation'];
+            $pickupDate = $form->getData()['pickUpDate'];
+            $dropoffDate = $form->getData()['dropOffDate'];
+            $location = $form->getData()['pickUpLocation'];
             if ($pickupDate > $dropoffDate) {
                 $errors[] = 'Drop-off date must be before pick-up date';
             }
