@@ -8,7 +8,7 @@ $color5: #FEF9C7;
 
 body {
     background-color: $background;
-    height: 100%;
+    height: 100vh;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -185,6 +185,8 @@ a {
     padding-bottom: 5px;
     background-color: $yellowChick;
     color: black;
+    font-weight: bold;
+    box-shadow: 10px 10px 0px grey;
 
     a {
         text-decoration: none;
@@ -192,7 +194,6 @@ a {
 
         &:hover {
             color: black;
-            text-decoration: underline;
         }
     }
 }
@@ -229,7 +230,6 @@ h2 {
     z-index: 1;
 }
 
-.carSharing {
-    background-color: $color4;
-    zoom: 100%;
+ul {
+    list-style: none;
 }
