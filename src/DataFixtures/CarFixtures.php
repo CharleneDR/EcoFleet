@@ -90,7 +90,7 @@ class CarFixtures extends Fixture
             'seats' => '4',
             'city' => 'Nantes',
             'registration' => 'GC-764-PK',
-            'picture' => 'https://www.autoreduc.com/23661/volkswagen-golf-6-r-line-2.jpg',
+            'picture' => 'https://www.largus.fr/images/images/Volkswagen-e-Golf-electrique-2014_32.JPG',
             'available' => 1
         ],
         [
