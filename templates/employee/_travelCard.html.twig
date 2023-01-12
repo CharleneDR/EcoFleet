@@ -1,0 +1,41 @@
+<div class="card mb-3" style="width: 750px;">
+	<div class="row g-0 h-100">
+		<div class="col-md-4 img-car rounded-start h-100" style="background-image: url({{rent.car.picture}})"></div>
+		<div class="col-md-8">
+			<div class="card-body carSharing h-100 py-2">
+				<div class="d-flex flex-row justify-content-between">
+					<h5>{{rent.startDate|date("Y/m/d")}}
+						-
+						{{rent.endDate|date("Y/m/d")}}</h5>
+					<h6 class="card-title mb-0">{{rent.car.model}}
+						-
+						{{rent.car.brand}}</h6>
+				</div>
+				<p class="card-text mb-2">
+					<h6>From :
+						{{rent.locationDeparture}}</br>
+					To :
+					{{rent.locationDeparture}}
+				</p>
+			</h6>
+		</p>
+		<small class="card-text mb-0">{{rent.car.seats - rent.passenger|length}}
+			seats available
+		</small>
+		<div class="d-flex flex-row justify-content-between align-items-end">
+			<div class="d-flex flex-column align-items-start mt-2">
+				{% for passenger in rent.passenger %}
+					<small>{{passenger.employee.firstname}}
+						{{passenger.employee.lastname}}
+						<br></small>
+				{% endfor %}
+			</div>
+
+		</div>
+		<div class="d-flex justify-content-end book">
+			<a href="{{ path("app_rent_carSharing", {'id':rent.id})}}" class="btn button rounded">Cancel</a>
+		</div>
+	</div>
+</div></div><div>
+<span class="d-none energies">{{rent.car.fuel}}<span></div>
+</div>
