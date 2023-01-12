@@ -2,8 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Agency;
 use App\Entity\Car;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -18,10 +21,12 @@ class CarType extends AbstractType
             ->add('geerbox')
             ->add('kilometers')
             ->add('seats')
-            ->add('unavailabilitydate')
             ->add('registration')
-            ->add('city')
-        ;
+            ->add('city', EntityType::class, [
+                'class' => Agency::class,
+                'choice_label' => 'city',
+            ])
+            ->add('Available');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
