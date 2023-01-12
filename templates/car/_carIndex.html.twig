@@ -1,0 +1,44 @@
+<div class="card rounded-0 mb-5 pb-5 border-bottom border-grey" style="width: 750px;">
+	<div class="row g-0 h-100">
+		<div class="h-100 col-md-4 img-car rounded-4" style="background-image: url({{car.picture}})"></div>
+		<div class="col-md-8">
+			<div class="card-body h-100 pb-0 d-flex flex-column justify-content-between">
+				<div class="d-flex flex-row justify-content-between">
+					<h5 class="card-title mb-0">{{car.model}}
+						-
+						{{car.brand}}</h5>
+					<div class="d-flex flex-row">
+						<div id="carbon"></div>
+						{% if car.available == true %}
+							<div class="text-success pe-1">
+								Available
+							</div>
+						{% endif %}
+						{% if car.available == false %}
+							<div class="text-danger pe-1">
+								Unavailable
+							</div>
+						{% endif %}
+					</div>
+				</div>
+				<p class="card-text mb-2">
+					<small>{{car.registration}}</small>
+				</p>
+				<p class="card-text mb-0">{{car.geerbox}}
+					gears -
+					{{car.fuel}}
+					-
+					{{car.kilometers}}km</p>
+				<p class="card-text mb-0">{{car.seats}}
+					seats
+				</p>
+				<p class="card-text mb-0">{{car.city.city}}
+				</p>
+				<div class="d-flex justify-content-end">
+					<a href="{{ path('app_car_edit', {'id': car.id}) }}" class="btn button rounded m-1">Edit</a>
+				</div>
+			</div>
+		</div>
+		<div id="energy" class="d-none">{{car.fuel}}</div>
+	</div>
+</div>
