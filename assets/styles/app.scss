@@ -162,6 +162,19 @@ th {
 a {
     text-decoration: none;
     color: #000;
+
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+.nav {
+    padding: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: $yellowChick;
+    color: black;
 }
 
 h1 {
