@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EmployeeController extends AbstractController
 {
-    #[Route('/employee', name: 'app_employee')]
+    #[Route('/journeys', name: 'app_employee')]
     public function index(UserRepository $userRepository): Response
     {
         $user = $userRepository->findOneBy(['id' => $this->getUser()]);
