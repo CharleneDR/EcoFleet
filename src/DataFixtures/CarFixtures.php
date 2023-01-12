@@ -42,7 +42,7 @@ class CarFixtures extends Fixture
             'seats' => '4',
             'city' => 'Nantes',
             'registration' => 'IC-564-LK',
-            'picture' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQarETPfHxeyk2xcHuV1OvdiGWmwNh95QBeiQ&usqp=CAU',
+            'picture' => 'https://www.topvelo.fr/storage/2020/08/Tesla-model-3-DSCF8897.jpg',
             'available' => 1
         ],
         [
