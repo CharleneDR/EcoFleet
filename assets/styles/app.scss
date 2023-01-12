@@ -71,7 +71,8 @@ body {
 }
 
 .card {
-    border: 3px solid $blueDuck;
+    border: 2px solid $blueDuck;
+    height: 171px;
 }
 
 .button {
@@ -173,7 +174,6 @@ a {
 
     &:hover {
         color: black;
-        text-decoration: underline;
     }
 }
 
@@ -183,8 +183,29 @@ a {
     padding-bottom: 5px;
     background-color: $yellowChick;
     color: black;
+
+    a {
+        text-decoration: none;
+        color: #000;
+
+        &:hover {
+            color: black;
+            text-decoration: underline;
+        }
+    }
 }
 
 h1 {
     text-align: center;
+}
+
+.leafLogo {
+    width: 20px;
+}
+
+.book {
+    position: absolute;
+    bottom: 10px;
+    right: 18px;
+    z-index: 1;
 }

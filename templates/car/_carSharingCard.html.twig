@@ -1,16 +1,18 @@
 <div class="card mb-3" style="width: 750px;">
-	<div class="row g-0">
+	<div class="row g-0 h-100">
 		<div class="col-md-4 img-car rounded-start" style="background-image: url({{rent.car.picture}})"></div>
 		<div class="col-md-8">
-			<div class="card-body py-2">
+			<div class="card-body h-100 py-2">
 				<div class="d-flex flex-row justify-content-between">
 					<h5 class="card-title mb-0">{{rent.car.model}}
 						-
 						{{rent.car.brand}}</h5>
-					<div class="d-flex flex-row justify-content-end">
+					<div class="d-flex flex-row justify-content-end text-success">
 						<div class="pe-1">-</div>
 						<div class="carbon"></div>
-						<div class="ps-1">kgCO2</div>
+						<div class="px-1">kg CO<sup>2</sup>
+						</div>
+						<img src="{{ asset('build/images/leaf.png') }}" class="leafLogo">
 					</div>
 				</div>
 
@@ -20,8 +22,18 @@
 				<p class="card-text mb-0">{{rent.car.seats - rent.passenger|length}}
 					seats available
 				</p>
-				<div class="d-flex justify-content-end">
-					<a href="{{ path("app_rent_new", {'id':rent.car.id, 'locationDeparture':locationDeparture, 'locationArrival':locationArrival, 'startDate':startDate, 'endDate':endDate}) }}" class="btn button rounded">Book</a>
+				<div class="d-flex flex-row justify-content-between align-items-end">
+					<div class="d-flex flex-column align-items-start mt-2">
+						{% for passenger in rent.passenger %}
+							<small>{{passenger.employee.firstname}}
+								{{passenger.employee.lastname}}
+								<br></small>
+						{% endfor %}
+					</div>
+
+				</div>
+				<div class="d-flex justify-content-end book">
+					<a href="{{ path("app_rent_carSharing", {'id':rent.id})}}" class="btn button rounded">Book</a>
 				</div>
 			</div>
 		</div>
