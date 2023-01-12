@@ -1,8 +1,8 @@
-$background: #EDEAE5;
+$background: white;
 $blueDuck: #026670;
 $yellowChick: #FCE181;
-$color4: #9FEDD7;
-$color5: #FEF9C7;
+$color4: white;
+$color5: white;
 
 @import "~bootstrap/scss/bootstrap";
 
@@ -71,8 +71,10 @@ body {
 }
 
 .card {
-    border: 2px solid $blueDuck;
-    height: 171px;
+    border: none;
+    border-bottom: 1px solid black;
+    height: 230px;
+
 }
 
 .button {
@@ -96,7 +98,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border-right: solid $blueDuck 1px;
 }
 
 .login {
