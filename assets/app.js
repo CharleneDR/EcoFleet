@@ -21,17 +21,26 @@ function handler(event) {
     return event.response;
 }
 
-
-let energy = document.getElementById('energy').innerHTML
-let vehicle = 4
-if (energy == "Electric") {
-    vehicle = 5
-}
-
-let carbon = document.getElementById('carbon')
-
-fetch('https://api.monimpacttransport.fr/beta/getEmissionsPerDistance?km=250&transportations=' + vehicle)
+fetch('https://maps.googleapis.com/maps/api/distancematrix/json?origins=Washington%2C%20DC&destinations=New%20York%20City%2C%20NY&units=imperial&key=AIzaSyBUrnPC50MWjxUHAVi1RYCRzKAchHhsW54')
     .then(response => response.json())
     .then(connexion => {
-        carbon.innerHTML = connexion[0]['emissions']['kgco2e']
+        console.log(connexion)
     })
+
+
+let energies = document.querySelectorAll('.energies')
+
+let carbon = document.getElementsByClassName('carbon')
+
+for (let i = 0; i < energies.length; i++) {
+    let vehicle = 4
+    if (energies[i].innerHTML == "Electric") {
+        vehicle = 5
+    }
+
+    fetch('https://api.monimpacttransport.fr/beta/getEmissionsPerDistance?km=250&transportations=' + vehicle)
+        .then(response => response.json())
+        .then(connexion => {
+            carbon[i].innerHTML = connexion[0]['emissions']['kgco2e']
+        })
+}

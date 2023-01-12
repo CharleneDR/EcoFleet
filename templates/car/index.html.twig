@@ -6,60 +6,75 @@
 {% block body %}
 	<nav class="navbar navbar-light">
 		<form class="form-inline">
-			<button class="btn btn-outline-success" type="button">List of cars</button>
-			<button class="btn btn-outline-success" type="button" href="{{ path("app_category_index") }}">List of rent</button>
+			<button class="btn btn-outline-success" type="button">
+				<a class="text-dark text-decoration-none" href="{{ path("app_car_index") }}">List of cars</a>
+			</button>
+			<button class="btn btn-outline-success" type="button">
+				<a class="text-dark text-decoration-none" href="{{ path("app_rent_index") }}">List of rent</a>
+			</button>
 		</form>
 	</nav>
-	<h1>Your cars</h1>
+	<h1>Cars</h1>
 
-	<table class="table">
-		<thead>
+	<tbody>
+		{% for car in cars %}
+
+			<div class="card m-3" style="max-width: 750px;">
+				<div class="row g-0">
+					<div class="col-md-4">
+						<img src="{{car.picture}}" class="img-fluid rounded-start" alt="...">
+					</div>
+					<div class="col-md-8">
+						<div class="card-body py-2">
+							<div class="d-flex flex-row justify-content-between">
+								<h5 class="card-title mb-0">{{car.model}}
+									-
+									{{car.brand}}</h5>
+								<div class="d-flex flex-row">
+									<div id="carbon"></div>
+									<div class="ps-1">
+										{% if car.available == true %}
+											<div class="alert alert-success p-1" role="alert">
+												Available
+											</div>
+										{% endif %}
+										{% if car.available == false %}
+											<div class="alert alert-danger p-1" role="alert">
+												Unavailable
+											</div>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+							<p class="card-text mb-2">
+								<small>{{car.registration}}</small>
+							</p>
+							<p class="card-text mb-0">{{car.geerbox}}
+								gears -
+								{{car.fuel}}
+								-
+								{{car.kilometers}}km</p>
+							<p class="card-text mb-0">{{car.seats}}
+								seats
+							</p>
+							<p class="card-text mb-0">{{car.city.city}}
+							</p>
+							<div class="d-flex justify-content-end">
+								<a href="{{ path('app_car_edit', {'id': car.id}) }}" class="btn button rounded m-1">Edit</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="energy" class="d-none">{{car.fuel}}</div>
+			</div>
+		{% else %}
 			<tr>
-				<th>Model</th>
-				<th>Brand</th>
-				<th>Fuel</th>
-				<th>Geerbox</th>
-				<th>Kilometers</th>
-				<th>Seats</th>
-				<th>Registration</th>
-				<th>Available</th>
-				<th>Picture</th>
-				<th>actions</th>
+				<td colspan="10">no records found</td>
 			</tr>
-		</thead>
-		<tbody>
-			{% for car in cars %}
-				<tr>
-					<td>{{ car.model }}</td>
-					<td>{{ car.brand }}</td>
-					<td>{{ car.fuel }}</td>
-					<td>{{ car.geerbox }}</td>
-					<td>{{ car.kilometers }}</td>
-					<td>{{ car.seats }}</td>
-					<td>{{ car.registration }}</td>
-					<td>
-						{% if car.available == true %}
-							Available
-						{% endif %}
-						{% if car.available == false %}
-							Unavailable
-						{% endif %}
-					</td>
-					<td>
-						<img class="w-25" src="{{ car.picture }}">
-					</td>
-					<td>
-						<a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
-						<a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>
-					</td>
-				</tr>
-			{% else %}
-				<tr>
-					<td colspan="10">no records found</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+		{% endfor %}
+	</tbody>
+</table>
 
-	<a href="{{ path('app_car_new') }}">Create new</a>
-{% endblock %}
+<button class="btn btn-outline-success" type="button">
+	<a class="text-dark text-decoration-none" href="{{ path('app_car_new') }}">Create new</a>
+</button>{% endblock %}

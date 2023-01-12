@@ -8,28 +8,28 @@ $color5: #FEF9C7;
 
 body {
     background-color: $background;
+    height: 100vh;
 }
 
-// input {
-//     text-align: center;
-//     vertical-align: center;
-//     color: #000;
-//     border-radius: 0px !important;
-//     border-color: #000 !important;
-//     width: 200px;
-//     height: 30px;
+.searchCar input {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    width: 200px;
+    height: 30px;
 
-//     &:focus {
-//         border-color: blue !important;
-//         box-shadow: none !important;
-//     }
+    &:focus {
+        box-shadow: none !important;
+    }
 
-//     border-width: 1px !important;
-//     background-color: #EFEDED !important;
+    border-width: 1px !important;
+    background-color: #EFEDED !important;
 
-// }
+}
 
-select {
+.searchCar select {
     text-align: center;
     vertical-align: center;
     color: #000;
@@ -46,9 +46,9 @@ select {
     }
 }
 
-// label {
-//     color: white;
-// }
+.searchCar label {
+    color: white;
+}
 
 .searchCar {
     max-width: 250px !important;
