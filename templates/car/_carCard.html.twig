@@ -26,7 +26,7 @@
 					seats
 				</p>
 				<div class="d-flex justify-content-end">
-					<a href="#" class="btn button rounded">Book</a>
+					<a href="{{ path("app_rent_new", {'id':car.id, 'locationDeparture':locationDeparture, 'locationArrival':locationArrival, 'startDate':startDate, 'endDate':endDate}) }}" class="btn button rounded">Book</a>
 				</div>
 			</div>
 		</div>

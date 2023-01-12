@@ -47,9 +47,9 @@ class CarController extends AbstractController
             }
 
             $interval = \DateInterval::createFromDateString('1 day');
-            $datesOfLocation = new \DatePeriod($pickupDate, $interval ,$dropoffDate);
+            $datesOfLocation = new \DatePeriod($pickupDate, $interval, $dropoffDate);
             $unavailableDays = [];
-            foreach($datesOfLocation as $day){
+            foreach ($datesOfLocation as $day) {
                 $unavailableDays[] = $day;
             }
             $cars = $searchCars->findCorrespondingCars($unavailableDays, $location);
@@ -57,14 +57,17 @@ class CarController extends AbstractController
 
             return $this->render('car/searchCars.html.twig', [
                 'form' => $form,
-                'cars' => $cars
+                'cars' => $cars,
+                'locationDeparture' => $location->getCity(),
+                'locationArrival' => 'Nice',
+                'startDate' => $pickupDate->format('Y-m-d'),
+                'endDate' => $dropoffDate->format('Y-m-d')
             ]);
-                
         } else {
             return $this->render('car/searchCars.html.twig', [
                 'form' => $form
             ]);
-            }
+        }
 
         return $this->render('car/searchCars.html.twig', [
             'form' => $form
@@ -119,7 +122,7 @@ class CarController extends AbstractController
     #[Route('/{id}', name: 'app_car_delete', methods: ['POST'])]
     public function delete(Request $request, Car $car, CarRepository $carRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$car->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $car->getId(), $request->request->get('_token'))) {
             $carRepository->remove($car, true);
         }
 
