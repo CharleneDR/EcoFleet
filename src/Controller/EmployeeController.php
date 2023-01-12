@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Repository\CarRepository;
+use App\Repository\RentRepository;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -9,10 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class EmployeeController extends AbstractController
 {
     #[Route('/employee', name: 'app_employee')]
-    public function index(): Response
+    public function index(UserRepository $userRepository): Response
     {
-        return $this->render('employee/index.html.twig', [
-            'controller_name' => 'EmployeeController',
-        ]);
+        $user = $userRepository->findOneBy(['id' => $this->getUser()]);
+        $travels = $user->getTravels();
+
+        return $this->render(
+            'employee/index.html.twig',
+            ['travels' => $travels]
+        );
     }
 }
