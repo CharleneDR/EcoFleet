@@ -45,6 +45,91 @@ class CarFixtures extends Fixture
             'picture' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQarETPfHxeyk2xcHuV1OvdiGWmwNh95QBeiQ&usqp=CAU',
             'available' => 1
         ],
+        [
+            'model' => 'C4',
+            'brand' => "Citroën",
+            'fuel' => 'Electric',
+            'geerbox' => 'Automatic',
+            'kilometers' => '12098',
+            'seats' => '4',
+            'city' => 'Lyon',
+            'registration' => 'FZ-233-VE',
+            'picture' => 'https://images.caradisiac.com/images/1/1/2/8/191128/S1-essai-citroen-c4-bluehdi-110-ch-684826.jpg',
+            'available' => 0
+        ],
+        [
+            'model' => 'DS4',
+            'brand' => "Citroën",
+            'fuel' => 'Diesel',
+            'geerbox' => 'Automatic',
+            'kilometers' => '240893',
+            'seats' => '4',
+            'city' => 'Paris',
+            'registration' => 'IG-074-MD',
+            'picture' => 'https://auto.cdn-rivamedia.com/photos/annonce/big/citroen-ds4-16-e-hdi115-airdream-so-chic-etg6-134193135.jpg',
+            'available' => 1
+        ],
+        [
+            'model' => 'DS5',
+            'brand' => "Citroën",
+            'fuel' => 'Diesel',
+            'geerbox' => 'Automatic',
+            'kilometers' => '310894',
+            'seats' => '4',
+            'city' => 'Nantes',
+            'registration' => 'CD-564-LK',
+            'picture' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQarETPfHxeyk2xcHuV1OvdiGWmwNh95QBeiQ&usqp=CAU',
+            'available' => 1
+        ],
+        [
+            'model' => 'Golf VI',
+            'brand' => "Volkswagen",
+            'fuel' => 'Electric',
+            'geerbox' => 'Diesel',
+            'kilometers' => '170564',
+            'seats' => '4',
+            'city' => 'Nantes',
+            'registration' => 'GC-764-PK',
+            'picture' => 'https://www.autoreduc.com/23661/volkswagen-golf-6-r-line-2.jpg',
+            'available' => 1
+        ],
+        [
+            'model' => 'Tiguan',
+            'brand' => "Volkswagen",
+            'fuel' => 'Gasoline',
+            'geerbox' => 'Automatic',
+            'kilometers' => '281061',
+            'seats' => '4',
+            'city' => 'Lyon',
+            'registration' => 'FC-124-AE',
+            'picture' => 'https://www.automobile-magazine.fr/asset/cms/840x394/155988/config/109407/les-quatre-sorties-dechappement-caracteristiques-des-versions-r-trahissent-ce-prototype.jpg',
+            'available' => 1
+        ],
+        [
+            'model' => 'Touareg',
+            'brand' => "Volkswagen",
+            'fuel' => 'Diesel',
+            'geerbox' => 'Automatic',
+            'kilometers' => '150891',
+            'seats' => '4',
+            'city' => 'Lyon',
+            'registration' => 'CR-074-PL',
+            'picture' => 'https://www.gaillardauto.com/content/uploads/2022/08/f9e1056a-56be-4f61-8523-45bcf164cded.jpg',
+            'available' => 1
+        ],
+        [
+            'model' => 'Ami',
+            'brand' => "Citroen",
+            'fuel' => 'Electric',
+            'geerbox' => 'Automatic',
+            'kilometers' => '20',
+            'seats' => '2',
+            'city' => 'Paris',
+            'registration' => 'GG-666-VW',
+            'picture' => 'https://sf2.autojournal.fr/wp-content/uploads/autojournal/2021/10/post-ami-flammes-centre.jpg',
+            'available' => 1
+        ],
+
     ];
 
     public function load(ObjectManager $manager): void
