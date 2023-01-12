@@ -6,7 +6,7 @@
 {% block body %}
 
 	{{ form_start(form, {'attr': {'class': 'w-100 d-block py-3 blueDuck'}})}}
-	<h1 class="text-center text-light">
+	<h1 class="text-center text-light ">
 		Search your car</h1>
 
 	<div class="form-row formSearchCar">
@@ -25,7 +25,7 @@
 	{% endif %}
 	{{ form_end(form) }}
 	{% if rents is not empty %}
-		<h2 class="mt-4 mb-2">Share a car</h2>
+		<h2 class="mt-4 mb-2 display-2">Share a car</h2>
 
 		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
 			{% for rent in rents %}
@@ -34,7 +34,7 @@
 		</div>
 	{% endif %}
 
-	<h2 class="mt-4 mb-2">Book a car</h2>
+	<h2 class="mt-4 mb-2 display-2">Book a car</h2>
 	{% if cars is defined %}
 		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
 			{% for car in cars %}
