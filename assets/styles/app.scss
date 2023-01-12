@@ -116,17 +116,22 @@ body {
 }
 
 .homeMain {
-    background-color: $blueDuck;
+    background-image: linear-gradient(rgba(31, 31, 31, 0.289),
+            rgba(57, 57, 57, 0.6)), url("/assets/images/road.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .home input {
     text-align: center;
     vertical-align: center;
     color: #000;
-    border-radius: 0px !important;
+    border-radius: 5px !important;
     border-color: #000 !important;
     width: 200px;
     height: 30px;
+    margin-left: 10px;
+    height: 56px;
 
     &:focus {
         box-shadow: none !important;
@@ -141,12 +146,12 @@ body {
     text-align: center;
     vertical-align: center;
     color: #000;
-    border-radius: 0px !important;
+    border-radius: 5px !important;
     border-color: #000 !important;
     border-width: 1px !important;
     background-color: #EFEDED !important;
     width: 200px;
-    height: 30px;
+    height: 56px;
 
     &:focus {
         border-color: blue($color: #000000) !important;
