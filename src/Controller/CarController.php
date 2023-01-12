@@ -64,20 +64,23 @@ class CarController extends AbstractController
                     'form' => $form
                 ]);
             }
-            
-            }
+        }
 
-            $interval = \DateInterval::createFromDateString('1 day');
-            $datesOfLocation = new \DatePeriod($pickupDate, $interval, $dropoffDate);
-            $unavailableDays = [];
-            foreach ($datesOfLocation as $day) {
-                $unavailableDays[] = $day;
-            
+        $interval = \DateInterval::createFromDateString('1 day');
+        $datesOfLocation = new \DatePeriod($pickupDate, $interval, $dropoffDate);
+        $unavailableDays = [];
+        foreach ($datesOfLocation as $day) {
+            $unavailableDays[] = $day;
+
             $cars = $searchCars->findCorrespondingCars($unavailableDays, $location);
 
             return $this->render('car/searchCars.html.twig', [
                 'form' => $form,
-                'cars' => $cars
+                'cars' => $cars,
+                'locationDeparture' => $location->getCity(),
+                'locationArrival' => 'Nice',
+                'startDate' => $pickupDate->format('Y-m-d'),
+                'endDate' => $dropoffDate->format('Y-m-d')
             ]);
         }
 
