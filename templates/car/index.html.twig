@@ -7,8 +7,8 @@
 	<h1 class="display-2">Cars</h1>
 
 	<tbody>
-		<div class="d-flex justify-content-end align-items-end m-3">
-			<button class="btn button rounded " type="button">
+		<div class="d-flex justify-content-center align-items-end m-3">
+			<button class="btn button rounded w-25" type="button">
 				<a class="text-dark text-decoration-none" href="{{ path('app_car_new') }}">Add new car</a>
 			</button>
 		</div>
@@ -28,12 +28,12 @@
 										<div id="carbon"></div>
 										<div class="ps-1">
 											{% if car.available == true %}
-												<div class="alert alert-success p-1" role="alert">
+												<div class=" text-success p-1" role="alert">
 													Available
 												</div>
 											{% endif %}
 											{% if car.available == false %}
-												<div class="alert alert-danger p-1" role="alert">
+												<div class="alert text-danger p-1" role="alert">
 													Unavailable
 												</div>
 											{% endif %}
