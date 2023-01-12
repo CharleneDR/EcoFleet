@@ -7,7 +7,7 @@
 					<h5 class="card-title mb-0">{{rent.car.model}}
 						-
 						{{rent.car.brand}}</h5>
-					<div class="d-flex flex-row justify-content-end text-success">
+					<div class="d-flex flex-row justify-content-end">
 						<div class="pe-1">-</div>
 						<div class="carbon"></div>
 						<div class="px-1">kg CO<sup>2</sup>
@@ -20,7 +20,11 @@
 					<small>{{rent.car.registration}}</small>
 				</p>
 				<p class="card-text mb-0">{{rent.car.seats - rent.passenger|length}}
-					seats available
+					{% if(rent.car.seats - rent.passenger|length == 1) %}
+						seat available
+					{% else %}
+						seats available
+					{% endif %}
 				</p>
 				<div class="d-flex flex-row justify-content-between align-items-end">
 					<div class="d-flex flex-column align-items-start mt-2">

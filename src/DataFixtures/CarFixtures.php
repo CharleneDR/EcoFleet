@@ -78,14 +78,14 @@ class CarFixtures extends Fixture
             'seats' => '4',
             'city' => 'Nantes',
             'registration' => 'CD-564-LK',
-            'picture' => 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQarETPfHxeyk2xcHuV1OvdiGWmwNh95QBeiQ&usqp=CAU',
+            'picture' => 'https://www.turbo.fr/sites/default/files/styles/article_690x405/public/migration/newscast/field_image/000000004489816.jpg?itok=YJiuS8Ah',
             'available' => 1
         ],
         [
             'model' => 'Golf VI',
             'brand' => "Volkswagen",
             'fuel' => 'Electric',
-            'geerbox' => 'Diesel',
+            'geerbox' => 'Automatic',
             'kilometers' => '170564',
             'seats' => '4',
             'city' => 'Nantes',

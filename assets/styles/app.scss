@@ -191,6 +191,8 @@ a {
     padding-bottom: 5px;
     background-color: $yellowChick;
     color: black;
+    font-weight: bold;
+    box-shadow: 10px 10px 0px grey;
 
     a {
         text-decoration: none;
@@ -198,7 +200,6 @@ a {
 
         &:hover {
             color: black;
-            text-decoration: underline;
         }
     }
 }
@@ -236,6 +237,7 @@ h2 {
 }
 
 .carSharing {
+    background-color: $color4;
     zoom: 100%;
 }
 
