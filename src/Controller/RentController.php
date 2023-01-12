@@ -50,9 +50,9 @@ class RentController extends AbstractController
         $dropoffDate = new \Datetime($endDate);
 
         $interval = DateInterval::createFromDateString('1 day');
-        $daterange = new DatePeriod($pickupDate, $interval ,$dropoffDate->modify('+1 day'));
+        $daterange = new DatePeriod($pickupDate, $interval, $dropoffDate->modify('+1 day'));
 
-        foreach($daterange as $day){
+        foreach ($daterange as $day) {
             $unavailabilityDay = new UnavailabilityDate();
             $unavailabilityDay->setDay($day);
             $unavailabilityDay->setCar($car);
@@ -61,18 +61,18 @@ class RentController extends AbstractController
 
         $rentRepository->save($rent, true);
 
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_employee');
     }
 
     #[Route('/{id}', name: 'app_rent_carSharing', methods: ['GET'])]
     public function carSharing(Rent $rent, RentRepository $rentRepository): Response
     {
-        if(sizeof($rent->getPassenger()) < $rent->getCar()->getSeats()) {
+        if (sizeof($rent->getPassenger()) < $rent->getCar()->getSeats()) {
             /** @var User $user */
             $rent->addPassenger($this->getUser());
             $rentRepository->save($rent, true);
         }
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_employee');
     }
 
     #[Route('/{id}/edit', name: 'app_rent_edit', methods: ['GET', 'POST'])]
