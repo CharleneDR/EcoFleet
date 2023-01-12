@@ -1,21 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{# ... #}
-
 {% block body %}
-	{% if error %}
-		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-	{% endif %}
 
-	<form action="{{ path('app_login') }}" method="post">
-		<label for="username">Email:</label>
-		<input type="text" id="username" name="_username" value="{{ last_username }}">
+	<main class="container">
+		<div class="d-grid gap-2 d-md-flex mb-3 justify-content-md-end mt-5 text-center">
+			<div class="col">
 
-		<label for="password">Password:</label>
-		<input type="password" id="password" name="_password">
 
-		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<img class="mb-3" src="{{asset('build/images/sharing_car.svg')}}" alt="" width="90" height="90">
+				<h1 class="h3 mb-3 fw-normal">Welcome in the car-sharing service of Spectra Society !</h1>
 
-		<button type="submit">login</button>
-	</form>
+				{% if error %}
+					<div class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				<div class="login border border-1 px-4 m-4 rounded-2">
+					<form action="{{ path('app_login') }}" method="post">
+
+						<div class="">
+							<label class="form-label mt-3" for="username">Email :</label>
+							<input type="text" class="form-control mt-3" id="username" name="_username" placeholder="Your email here" value="{{ last_username }}">
+						</div>
+
+						<div class="my-3">
+							<label class="form-label mt-3" for="password">Password :</label>
+							<input type="password" id="password" name="_password" class="form-control mt-3" placeholder="Your password here">
+						</div>
+					</div>
+
+					<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+					<input type="hidden" name="_target_path" value="/login/redirect">
+
+
+					<button class="btn btn-lg button" type="submit">login</button>
+				</form>
+				<p class="mt-5 mb-3 text-muted">&copy; Hackathon Wild Code School 2023</p>
+			</div>
+		</div>
+	</main>
 {% endblock %}

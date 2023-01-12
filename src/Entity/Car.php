@@ -41,9 +41,6 @@ class Car
     #[ORM\Column(length: 255)]
     private ?string $registration = null;
 
-    #[ORM\ManyToMany(targetEntity: Rent::class, mappedBy: 'car')]
-    private Collection $rents;
-
     #[ORM\Column(length: 255)]
     private ?string $picture = null;
 
@@ -52,6 +49,9 @@ class Car
 
     #[ORM\Column]
     private ?bool $Available = null;
+
+    #[ORM\OneToMany(mappedBy: 'car', targetEntity: Rent::class)]
+    private Collection $rents;
 
     public function __construct()
     {
@@ -160,33 +160,6 @@ class Car
         return $this;
     }
 
-    /**
-     * @return Collection<int, Rent>
-     */
-    public function getRents(): Collection
-    {
-        return $this->rents;
-    }
-
-    public function addRent(Rent $rent): self
-    {
-        if (!$this->rents->contains($rent)) {
-            $this->rents->add($rent);
-            $rent->addCar($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRent(Rent $rent): self
-    {
-        if ($this->rents->removeElement($rent)) {
-            $rent->removeCar($this);
-        }
-
-        return $this;
-    }
-
     public function getPicture(): ?string
     {
         return $this->picture;
@@ -241,5 +214,33 @@ class Car
         return $this;
     }
 
+    /**
+     * @return Collection<int, Rent>
+     */
+    public function getRents(): Collection
+    {
+        return $this->rents;
+    }
 
+    public function addRent(Rent $rent): self
+    {
+        if (!$this->rents->contains($rent)) {
+            $this->rents->add($rent);
+            $rent->setCar($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRent(Rent $rent): self
+    {
+        if ($this->rents->removeElement($rent)) {
+            // set the owning side to null (unless already changed)
+            if ($rent->getCar() === $this) {
+                $rent->setCar(null);
+            }
+        }
+
+        return $this;
+    }
 }
