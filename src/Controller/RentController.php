@@ -2,18 +2,20 @@
 
 namespace App\Controller;
 
+use DateTime;
+use DatePeriod;
+use DateInterval;
 use App\Entity\Car;
 use App\Entity\Rent;
+use App\Entity\User;
 use App\Form\RentType;
 use App\Repository\CarRepository;
 use App\Entity\UnavailabilityDate;
-use App\Entity\User;
 use App\Repository\RentRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UnavailabilityDateRepository;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/rent')]
@@ -28,7 +30,7 @@ class RentController extends AbstractController
     }
 
     #[Route('/new/{id}/{locationDeparture}/{locationArrival}/{startDate}/{endDate}', name: 'app_rent_new', methods: ['GET', 'POST'])]
-    public function newRent(Car $car, RentRepository $rentRepository, $locationDeparture, $locationArrival, $startDate, $endDate): Response
+    public function newRent(Car $car, RentRepository $rentRepository, $locationDeparture, $locationArrival, $startDate, $endDate, Request $request, UnavailabilityDateRepository $unavailabilityDateRepository): Response
     {
         $rent = new rent();
 
@@ -44,17 +46,30 @@ class RentController extends AbstractController
         $rent->addPassenger($user);
         $rent->addEmployee($user->getEmployee());
 
+        $pickupDate = new \DateTime($startDate);
+        $dropoffDate = new \Datetime($endDate);
+
+        $interval = DateInterval::createFromDateString('1 day');
+        $daterange = new DatePeriod($pickupDate, $interval ,$dropoffDate->modify('+1 day'));
+
+        foreach($daterange as $day){
+            $unavailabilityDay = new UnavailabilityDate();
+            $unavailabilityDay->setDay($day);
+            $unavailabilityDay->setCar($car);
+            $unavailabilityDateRepository->save($unavailabilityDay, true);
+        }
+
         $rentRepository->save($rent, true);
 
         return $this->redirectToRoute('app_home');
     }
 
-    #[Route('/{id}', name: 'app_rent_show', methods: ['GET'])]
-    public function show(Rent $rent): Response
+    #[Route('/{id}', name: 'app_rent_carSharing', methods: ['GET'])]
+    public function carSharing(Rent $rent): Response
     {
-        return $this->render('rent/show.html.twig', [
-            'rent' => $rent,
-        ]);
+        if($rent->getPassenger() < $rent->getCar()->getSeats()) {
+            $rent->addPassenger($this->$user);
+        }
     }
 
     #[Route('/{id}/edit', name: 'app_rent_edit', methods: ['GET', 'POST'])]
