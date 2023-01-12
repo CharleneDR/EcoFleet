@@ -4,52 +4,27 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Car index</h1>
 
-	{{ form_start(form)}}
-	{{ form_widget(form,  {'attr': {'class': 'w-100 d-flex flex-row justify-content-evenly'}}) }}
-	<button class="btn">{{ button_label|default('Search') }}</button>
+	{{ form_start(form, {'attr': {'class': 'w-100 d-block py-4 blueDuck'}})}}
+	<h1 class="text-center text-light">
+		Search your car</h1>
+
+	<div class="form-row formSearchCar">
+		{{form_row(form.pickUpLocation, {'row_attr': {'class': 'd-flex flex-column searchCar'}})}}
+		{{form_row(form.pickUpDate, {'row_attr': {'class': 'searchCar'}})}}
+		{{form_row(form.destination, {'row_attr': {'class': 'searchCar'}})}}
+		{{form_row(form.dropOffDate, {'row_attr': {'class': 'searchCar'}})}}
+		<div class="align-self-end">
+			<button type='submit' class="btn py-1"><img src="{{ asset('build/images/search.png') }}" id="returnLogo"></button>
+		</div>
+	</div>
 	{{ form_end(form) }}
 
 	{% if cars is defined %}
-
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Id</th>
-					<th>Model</th>
-					<th>Brand</th>
-					<th>Fuel</th>
-					<th>Geerbox</th>
-					<th>Kilometers</th>
-					<th>Seats</th>
-					<th>Registration</th>
-					<th>actions</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for car in cars %}
-					<tr>
-						<td>{{ car.id }}</td>
-						<td>{{ car.model }}</td>
-						<td>{{ car.brand }}</td>
-						<td>{{ car.fuel }}</td>
-						<td>{{ car.geerbox }}</td>
-						<td>{{ car.kilometers }}</td>
-						<td>{{ car.seats }}</td>
-						<td>{{ car.registration }}</td>
-						<td>
-							<a href="{{ path('app_car_show', {'id': car.id}) }}">show</a>
-							<a href="{{ path('app_car_edit', {'id': car.id}) }}">edit</a>
-						</td>
-					</tr>
-				{% else %}
-					<tr>
-						<td colspan="10">no records found</td>
-					</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
+			{% for car in cars %}
+				{% include "car/_carCard.html.twig" %}
+			{% endfor %}
+		</div>
 	{% endif %}
-
 {% endblock %}
