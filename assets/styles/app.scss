@@ -83,3 +83,98 @@ body {
 .blueDuck {
     background-color: $blueDuck;
 }
+
+.home {
+    max-width: 250px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.formHome {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-items: center;
+    width: auto;
+}
+
+.homeMain {
+    background-color: $blueDuck;
+}
+
+.home input {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    width: 200px;
+    height: 30px;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+
+    border-width: 1px !important;
+    background-color: #EFEDED !important;
+
+}
+
+.home select {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    border-width: 1px !important;
+    background-color: #EFEDED !important;
+    width: 200px;
+    height: 30px;
+
+    &:focus {
+        border-color: blue($color: #000000) !important;
+        box-shadow: none !important;
+    }
+}
+
+.home label {
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+.img-car {
+    max-width: 80%;
+}
+
+.table {
+    margin: 20px;
+    border: solid black 2px;
+    text-align: center;
+    vertical-align: center;
+}
+
+th {
+    background-color: $blueDuck;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+
+    &:hover {
+        color: black;
+        text-decoration: underline;
+    }
+}
+
+.navbar {
+    padding: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: $yellowChick;
+    color: black;
+}
