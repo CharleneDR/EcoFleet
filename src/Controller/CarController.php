@@ -2,11 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Agency;
 use DatePeriod;
 use DateInterval;
 use App\Entity\Car;
 use App\Form\CarType;
 use App\Form\SearchCarType;
+use App\Repository\AgencyRepository;
 use App\Service\SearchCars;
 use App\Repository\CarRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -47,9 +49,9 @@ class CarController extends AbstractController
             }
 
             $interval = \DateInterval::createFromDateString('1 day');
-            $datesOfLocation = new \DatePeriod($pickupDate, $interval ,$dropoffDate);
+            $datesOfLocation = new \DatePeriod($pickupDate, $interval, $dropoffDate);
             $unavailableDays = [];
-            foreach($datesOfLocation as $day){
+            foreach ($datesOfLocation as $day) {
                 $unavailableDays[] = $day;
             }
             $cars = $searchCars->findCorrespondingCars($unavailableDays, $location);
@@ -59,12 +61,11 @@ class CarController extends AbstractController
                 'form' => $form,
                 'cars' => $cars
             ]);
-                
         } else {
             return $this->render('car/searchCars.html.twig', [
                 'form' => $form
             ]);
-            }
+        }
 
         return $this->render('car/searchCars.html.twig', [
             'form' => $form
@@ -119,7 +120,7 @@ class CarController extends AbstractController
     #[Route('/{id}', name: 'app_car_delete', methods: ['POST'])]
     public function delete(Request $request, Car $car, CarRepository $carRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$car->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $car->getId(), $request->request->get('_token'))) {
             $carRepository->remove($car, true);
         }
 

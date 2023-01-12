@@ -9,7 +9,7 @@ body {
     background-color: $background;
 }
 
-input {
+.searchCar input {
     text-align: center;
     vertical-align: center;
     color: #000;
@@ -28,7 +28,7 @@ input {
 
 }
 
-select {
+.searchCar select {
     text-align: center;
     vertical-align: center;
     color: #000;
@@ -45,7 +45,7 @@ select {
     }
 }
 
-label {
+.searchCar label {
     color: white;
 }
 
@@ -82,4 +82,28 @@ label {
 
 .blueDuck {
     background-color: $blueDuck;
+}
+
+.img-car {
+    max-width: 80%;
+}
+
+.table {
+    margin: 20px;
+    border: solid black 2px;
+    text-align: center;
+    vertical-align: center;
+}
+
+th {
+    background-color: $blueDuck;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+h1 {
+    text-align: center;
 }
