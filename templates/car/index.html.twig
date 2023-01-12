@@ -4,77 +4,64 @@
 {% endblock %}
 
 {% block body %}
-	<nav class="navbar navbar-light">
-		<form class="form-inline">
-			<button class="btn btn-outline-success" type="button">
-				<a class="text-dark text-decoration-none" href="{{ path("app_car_index") }}">List of cars</a>
-			</button>
-			<button class="btn btn-outline-success" type="button">
-				<a class="text-dark text-decoration-none" href="{{ path("app_rent_index") }}">List of rent</a>
-			</button>
-		</form>
-	</nav>
 	<h1>Cars</h1>
 
 	<tbody>
-		{% for car in cars %}
+		<div class="mt-5 d-flex flex-column align-items-center">
+			{% for car in cars %}
 
-			<div class="card m-3" style="max-width: 750px;">
-				<div class="row g-0">
-					<div class="col-md-4">
-						<img src="{{car.picture}}" class="img-fluid rounded-start" alt="...">
-					</div>
-					<div class="col-md-8">
-						<div class="card-body py-2">
-							<div class="d-flex flex-row justify-content-between">
-								<h5 class="card-title mb-0">{{car.model}}
-									-
-									{{car.brand}}</h5>
-								<div class="d-flex flex-row">
-									<div id="carbon"></div>
-									<div class="ps-1">
-										{% if car.available == true %}
-											<div class="alert alert-success p-1" role="alert">
-												Available
-											</div>
-										{% endif %}
-										{% if car.available == false %}
-											<div class="alert alert-danger p-1" role="alert">
-												Unavailable
-											</div>
-										{% endif %}
+				<div class="card m-3" style="width: 750px;">
+					<div class="row g-0">
+						<div class="col-md-4 img-car rounded-start" style="background-image: url({{car.picture}})"></div>
+						<div class="col-md-8">
+							<div class="card-body py-2">
+								<div class="d-flex flex-row justify-content-between">
+									<h5 class="card-title mb-0">{{car.model}}
+										-
+										{{car.brand}}</h5>
+									<div class="d-flex flex-row">
+										<div id="carbon"></div>
+										<div class="ps-1">
+											{% if car.available == true %}
+												<div class="alert alert-success p-1" role="alert">
+													Available
+												</div>
+											{% endif %}
+											{% if car.available == false %}
+												<div class="alert alert-danger p-1" role="alert">
+													Unavailable
+												</div>
+											{% endif %}
+										</div>
 									</div>
 								</div>
-							</div>
-							<p class="card-text mb-2">
-								<small>{{car.registration}}</small>
-							</p>
-							<p class="card-text mb-0">{{car.geerbox}}
-								gears -
-								{{car.fuel}}
-								-
-								{{car.kilometers}}km</p>
-							<p class="card-text mb-0">{{car.seats}}
-								seats
-							</p>
-							<p class="card-text mb-0">{{car.city.city}}
-							</p>
-							<div class="d-flex justify-content-end">
-								<a href="{{ path('app_car_edit', {'id': car.id}) }}" class="btn button rounded m-1">Edit</a>
+								<p class="card-text mb-2">
+									<small>{{car.registration}}</small>
+								</p>
+								<p class="card-text mb-0">{{car.geerbox}}
+									gears -
+									{{car.fuel}}
+									-
+									{{car.kilometers}}km</p>
+								<p class="card-text mb-0">{{car.seats}}
+									seats
+								</p>
+								<p class="card-text mb-0">{{car.city.city}}
+								</p>
+								<div class="d-flex justify-content-end">
+									<a href="{{ path('app_car_edit', {'id': car.id}) }}" class="btn button rounded m-1">Edit</a>
+								</div>
 							</div>
 						</div>
 					</div>
+					<div id="energy" class="d-none">{{car.fuel}}</div>
 				</div>
-				<div id="energy" class="d-none">{{car.fuel}}</div>
-			</div>
-		{% else %}
-			<tr>
-				<td colspan="10">no records found</td>
-			</tr>
-		{% endfor %}
+			{% else %}
+				<tr>
+					<td colspan="10">no records found</td>
+				</tr>
+			{% endfor %}
+		</div>
 	</tbody>
-</table>
-
-<button class="btn btn-outline-success" type="button">
-	<a class="text-dark text-decoration-none" href="{{ path('app_car_new') }}">Create new</a>
-</button>{% endblock %}
+</tbody></table><button class="btn button rounded m-1" type="button">
+<a class="text-dark text-decoration-none" href="{{ path('app_car_new') }}">Add new car</a></button>{% endblock %}
