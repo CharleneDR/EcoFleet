@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use DateTime;
 use DatePeriod;
 use DateInterval;
 use App\Entity\Car;
@@ -9,6 +10,7 @@ use App\Form\CarType;
 use App\Form\SearchCarType;
 use App\Service\SearchCars;
 use App\Repository\CarRepository;
+use App\Repository\AgencyRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,10 +27,21 @@ class CarController extends AbstractController
         ]);
     }
 
-    #[Route('/search', name: 'app_car_result', methods: ['GET', 'POST'])]
-    public function result(CarRepository $carRepository, Request $request, SearchCars $searchCars): Response
+    #[Route('/search/{startDate}/{endDate}/{startLocation}/{endLocation}', name: 'app_car_result', methods: ['GET', 'POST'])]
+    public function result($startDate, $endDate, $startLocation, $endLocation, AgencyRepository $agencyRepository, CarRepository $carRepository, Request $request, SearchCars $searchCars): Response
     {
         $form = $this->createForm(SearchCarType::class);
+
+        $pickupDate = new DateTime($startDate);
+        $dropoffDate = new DateTime($endDate);
+        $location = $agencyRepository->findOneBy(['city' => $startLocation]);
+        $destination = $endLocation;
+
+        $form->get('pickUpDate')->setData($pickupDate);
+        $form->get('dropOffDate')->setData($dropoffDate);
+        $form->get('pickUpLocation')->setData($location);
+        $form->get('destination')->setData($destination);
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -36,8 +49,13 @@ class CarController extends AbstractController
             $pickupDate = $form->getData()['pickUpDate'];
             $dropoffDate = $form->getData()['dropOffDate'];
             $location = $form->getData()['pickUpLocation'];
+            $destination = $form->getData()['destination'];
             if ($pickupDate > $dropoffDate) {
                 $errors[] = 'Drop-off date must be before pick-up date';
+                return $this->render('car/searchCars.html.twig', [
+                    'form' => $form,
+                    'errors' => $errors
+                ]);
             }
 
             if ($errors != []) {
@@ -45,29 +63,25 @@ class CarController extends AbstractController
                     'form' => $form
                 ]);
             }
+            
+            }
 
             $interval = \DateInterval::createFromDateString('1 day');
             $datesOfLocation = new \DatePeriod($pickupDate, $interval ,$dropoffDate);
             $unavailableDays = [];
             foreach($datesOfLocation as $day){
                 $unavailableDays[] = $day;
-            }
+            
             $cars = $searchCars->findCorrespondingCars($unavailableDays, $location);
-
 
             return $this->render('car/searchCars.html.twig', [
                 'form' => $form,
                 'cars' => $cars
             ]);
-                
-        } else {
-            return $this->render('car/searchCars.html.twig', [
-                'form' => $form
-            ]);
-            }
+        }
 
         return $this->render('car/searchCars.html.twig', [
-            'form' => $form
+            'form' => $form,
         ]);
     }
 
