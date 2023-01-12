@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-
+			{% form_theme form 'bootstrap_5_horizontal_layout.html.twig' %}
 			{{ form_start(form) }}
 			{{ form_widget(form) }}
 			<button class="btn button rounded m-1">{{ button_label|default('Save') }}</button>
