@@ -8,16 +8,15 @@
 		{{ form_start(form, {'attr': {'class': 'w-100 d-block py-4'}})}}
 		<h1 class="text-center text-light">
 			Search your car</h1>
-
 		<div class="form-row formHome">
 			{{form_row(form.pickUpLocation, {'row_attr': {'class': 'd-flex flex-column home'}})}}
 			{{form_row(form.pickUpDate, {'row_attr': {'class': 'home'}})}}
 			{{form_row(form.destination, {'row_attr': {'class': 'home'}})}}
 			{{form_row(form.dropOffDate, {'row_attr': {'class': 'home'}})}}
 			<div class="align-self-end">
-				<button type='submit' class="btn py-1"><img src="{{ asset('build/images/search.png') }}" id="returnLogo"></button>
+				<button type='submit' class="btn py-1 pb-2"><img src="{{ asset('build/images/searchWhite.png') }}" id="returnLogo"></button>
 			</div>
 		</div>
-		{{ form_end(form) }}
-	</main>
-{% endblock %}
+	</div>
+	{{ form_end(form) }}
+</main>{% endblock %}
