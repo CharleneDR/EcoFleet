@@ -72,9 +72,7 @@ body {
 
 .card {
     border: none;
-    border-bottom: 1px solid black;
     height: 230px;
-
 }
 
 .button {
@@ -236,7 +234,7 @@ h2 {
 
 .book {
     position: absolute;
-    bottom: 10px;
+    bottom: 0px;
     right: 18px;
     z-index: 1;
 }
