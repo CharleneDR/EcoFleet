@@ -13,8 +13,8 @@ class EmployeeFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager): void
     {
         $employee = new Employee();
-        $employee->setFirstname('Jean-Michel');
-        $employee->setLastname('Employee');
+        $employee->setFirstname('Marie');
+        $employee->setLastname('Giraud');
         $employee->setUser($this->getReference('Employee'));
         $manager->persist($employee);
 
