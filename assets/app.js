@@ -20,21 +20,26 @@ let end = document.getElementById('search_car_destination').value
 let energies = document.querySelectorAll('.energies')
 let carbon = document.getElementsByClassName('carbon')
 
-fetch('https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + start + '&destinations=' + end + '&key=AIzaSyBUrnPC50MWjxUHAVi1RYCRzKAchHhsW54')
+
+fetch('/api')
     .then(response => response.json())
     .then(connexion => {
-        for (let i = 0; i < energies.length; i++) {
-            let vehicle = 4
-            if (energies[i].innerHTML == "Electric") {
-                vehicle = 5
-            }
+        fetch('https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/distancematrix/json?origins=' + start + '&destinations=' + end + '&key=' + connexion)
+            .then(response => response.json())
+            .then(distance => {
+                for (let i = 0; i < energies.length; i++) {
+                    let vehicle = 4
+                    if (energies[i].innerHTML == "Electric") {
+                        vehicle = 5
+                    }
 
-            fetch('https://api.monimpacttransport.fr/beta/getEmissionsPerDistance?km=' + connexion['rows'][0]['elements'][0]['distance']['value'] / 1000 + '&transportations=' + vehicle)
-                .then(response => response.json())
-                .then(connexion => {
-                    carbon[i].innerHTML = Math.ceil(connexion[0]['emissions']['kgco2e'])
-                })
-        }
+                    fetch('https://api.monimpacttransport.fr/beta/getEmissionsPerDistance?km=' + distance['rows'][0]['elements'][0]['distance']['value'] / 1000 + '&transportations=' + vehicle)
+                        .then(response => response.json())
+                        .then(distance => {
+                            carbon[i].innerHTML = Math.ceil(distance[0]['emissions']['kgco2e'])
+                        })
+                }
 
+            })
     })
 
