@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_5_layout.html.twig' %}
+{% block title %}Edit Car
+{% endblock %}
+
+{% block body %}
+	<h1 class='display-2 m-4'>Edit Car</h1>
+	{{ include('car/_form.html.twig') }}
+
+{% endblock %}

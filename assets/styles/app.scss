@@ -1,0 +1,300 @@
+$background: white;
+$blueDuck: #026670;
+$yellowChick: #FCE181;
+$color4: white;
+$color5: white;
+
+@import "~bootstrap/scss/bootstrap";
+
+body {
+    background-color: white;
+    height: 100vh;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.searchCar input {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 5px !important;
+    border-color: #000 !important;
+    width: 200px;
+    height: 30px;
+    margin-left: 10px;
+    height: 45px;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+
+    border-width: 1px !important;
+    background-color: #EFEDED !important;
+
+}
+
+.searchCar select {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 5px !important;
+    border-color: #000 !important;
+    width: 200px;
+    height: 45px;
+    background-color: #EFEDED !important;
+
+    &:focus {
+        border-color: blue($color: #000000) !important;
+        box-shadow: none !important;
+    }
+}
+
+.searchCar label {
+    color: white;
+}
+
+.searchCar {
+    max-width: 250px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.formSearchCar {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-items: center;
+    width: auto;
+}
+
+#returnLogo {
+    height: 35px;
+}
+
+.card {
+    border: none;
+    height: 240px;
+}
+
+.button {
+    background-color: $yellowChick;
+    width: 100px;
+
+    &:hover {
+        background-color: darken(#FCE181, 10%);
+    }
+}
+
+.blueDuck {
+    background-image: linear-gradient(rgba(31, 31, 31, 0.289),
+            rgba(57, 57, 57, 0.6)), url("/assets/images/roadmini.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px;
+}
+
+.img-car {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.login {
+    background-color: $blueDuck;
+    width: 500px;
+}
+
+
+.home {
+    max-width: 250px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.formHome {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    align-items: center;
+    width: auto;
+}
+
+.homeMain {
+    background-image: linear-gradient(rgba(31, 31, 31, 0.289),
+            rgba(57, 57, 57, 0.6)), url("/assets/images/road.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: top;
+
+}
+
+.home input {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 5px !important;
+    border-color: #000 !important;
+    width: 200px;
+    height: 30px;
+    margin-left: 10px;
+    height: 56px;
+
+    &:focus {
+        box-shadow: none !important;
+    }
+
+    border-width: 1px !important;
+    background-color: #EFEDED !important;
+
+}
+
+.home select {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 5px !important;
+    border-color: #000 !important;
+    border-width: 1px !important;
+    background-color: #EFEDED !important;
+    width: 200px;
+    height: 56px;
+
+    &:focus {
+        border-color: blue($color: #000000) !important;
+        box-shadow: none !important;
+    }
+}
+
+.home label {
+    color: white;
+}
+
+.table {
+    margin: 20px;
+    border: solid black 2px;
+    text-align: center;
+    vertical-align: center;
+}
+
+th {
+    background-color: $blueDuck;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+
+    &:hover {
+        color: black;
+    }
+}
+
+.nav {
+    padding: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: $yellowChick;
+    color: black;
+    // font-weight: bold;
+
+    a {
+        text-decoration: none;
+        color: #000;
+
+        &:hover {
+            color: black;
+        }
+    }
+}
+
+h1 {
+    text-align: center;
+    margin: 20px;
+}
+
+#slogan {
+    margin-top: 10px;
+}
+
+#plant {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+    margin-bottom: 15px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+}
+
+
+.leafLogo {
+    width: 20px;
+}
+
+.book {
+    position: absolute;
+    bottom: 0px;
+    right: 18px;
+    z-index: 1;
+}
+
+.carSharing {
+    background-color: $color4;
+}
+
+.edit input {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    width: 400px;
+    height: 35px;
+}
+
+.edit select {
+    text-align: center;
+    vertical-align: center;
+    color: #000;
+    border-radius: 0px !important;
+    border-color: #000 !important;
+    width: 400px;
+    height: 35px;
+}
+
+.edit label {
+    width: 100px;
+}
+
+.formCar input {
+    height: 35px;
+    border: 1px solid black;
+}
+
+.formCar label {
+    margin-bottom: 5px;
+}
+
+select {
+    height: 35px;
+    background-color: white;
+    border: 1px solid black;
+}
+
+.larger {
+    width: 200px;
+}
+
+.bg-login {
+    background-image: linear-gradient(rgba(31, 31, 31, 0.111),
+            rgba(57, 57, 57, 0.285)), url("/assets/images/bg-grey2.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.formSize {
+    width: 400px;
+}

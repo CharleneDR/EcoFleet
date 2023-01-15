@@ -19,11 +19,6 @@
 		{% endblock %}
 	</head>
 	<body>
-		{% if is_granted("ROLE_COMPANY")%}
-			{% include "_navbarAdmin.html.twig" %}
-		{% else %}
-			{% include "_navbar.html.twig" %}
-		{% endif %}
 		{% block body %}{% endblock %}
 	</body>
 </html>

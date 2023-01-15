@@ -14,6 +14,11 @@ Encore
     // only needed for CDN's or subdirectory deploy
     //.setManifestKeyPrefix('build/')
 
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]',
+    })
+
     /*
      * ENTRY CONFIG
      *
@@ -57,7 +62,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -81,3 +86,4 @@ fullConfig.devServer = {
 };
 
 module.exports = fullConfig;
+

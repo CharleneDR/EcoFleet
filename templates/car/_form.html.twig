@@ -1,0 +1,17 @@
+<div class="edit d-flex flex-column align-items-center justify-content-center">
+	<div class="justify-content-center formCar">
+		{{ form_start(form, {'attr': {'class': 'd-flex flex-column justify-content-center'}})}}
+		{{ form_row(form.picture, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{ form_row(form.model, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{ form_row(form.brand, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{ form_row(form.fuel, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{ form_row(form.geerbox, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{ form_row(form.kilometers, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{ form_row(form.seats, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{ form_row(form.city, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{ form_row(form.registration, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		{{form_row(form.Available, {'attr': {'class': 'd-flex flex-column justify-content-center mb-3'}}) }}
+		<button class="btn button rounded my-3 m-auto">{{ button_label|default('Save') }}</button>
+		{{ form_end(form) }}
+	</div>
+</div>

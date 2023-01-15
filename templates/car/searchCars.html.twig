@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book a car
+{% endblock %}
+
+{% block body %}
+
+	{{ form_start(form, {'attr': {'class': 'w-100 d-block py-3 blueDuck'}})}}
+	<h1 class="text-center text-light ">
+		Search your car</h1>
+
+	<div class="form-row formSearchCar">
+		{{form_row(form.pickUpLocation, {'row_attr': {'class': 'd-flex flex-column searchCar'}})}}
+		{{form_row(form.pickUpDate, {'row_attr': {'class': 'searchCar'}})}}
+		{{form_row(form.destination, {'row_attr': {'class': 'searchCar'}})}}
+		{{form_row(form.dropOffDate, {'row_attr': {'class': 'searchCar'}})}}
+		<div class="align-self-end">
+			<button type='submit' class="btn py-1 pb-1"><img src="{{ asset('build/images/searchWhite.png') }}" id="returnLogo"></button>
+		</div>
+	</div>
+	{% if errors is defined %}
+		{% for error in errors %}
+			<div class="text-center mt-2">{{error}}</div>
+		{% endfor %}
+	{% endif %}
+	{{ form_end(form) }}
+	{% if rents is not empty %}
+		<h2 class="m-4 display-2">Share a car</h2>
+		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
+			{% for rent in rents %}
+				{% include "car/_carSharingCard.html.twig" %}
+			{% endfor %}
+		</div>
+	{% endif %}
+
+	<h2 class="m-4 display-2">Book a car</h2>
+	{% if cars is defined %}
+		<div class="mt-5 d-flex flex-column justify-content-center align-items-center">
+			{% for car in cars %}
+				{% include "car/_carCard.html.twig" %}
+			{% endfor %}
+		</div>
+	{% else %}
+		No car available
+	{% endif %}
+{% endblock %}

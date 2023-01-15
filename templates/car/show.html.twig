@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Car
+{% endblock %}
+
+{% block body %}
+	<h1>Car</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ car.id }}</td>
+			</tr>
+			<tr>
+				<th>Model</th>
+				<td>{{ car.model }}</td>
+			</tr>
+			<tr>
+				<th>Brand</th>
+				<td>{{ car.brand }}</td>
+			</tr>
+			<tr>
+				<th>Fuel</th>
+				<td>{{ car.fuel }}</td>
+			</tr>
+			<tr>
+				<th>Geerbox</th>
+				<td>{{ car.geerbox }}</td>
+			</tr>
+			<tr>
+				<th>Kilometers</th>
+				<td>{{ car.kilometers }}</td>
+			</tr>
+			<tr>
+				<th>Seats</th>
+				<td>{{ car.seats }}</td>
+			</tr>
+			<tr>
+				<th>Registration</th>
+				<td>{{ car.registration }}</td>
+			</tr>
+			<tr>
+				<th>Picture</th>
+				<td>
+					<img class="w-25" src="{{ car.picture }}">
+				</td>
+			</tr>
+			<tr>
+				<th>Available</th>
+				{% if car.available == true %}
+					<td>
+						<div class="alert alert-success p-1" role="alert">
+							Available
+						</div>
+					</td>
+				{% endif %}
+				{% if car.available == false %}
+					<td>
+						<div class="alert alert-danger p-1" role="alert">
+							Unavailable
+						</div>
+					</td>
+				{% endif %}
+				<td>{{ car.available }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a class="btn button rounded m-1" href="{{ path('app_car_index') }}">Back to list</a>
+
+	<a class="btn button rounded m-1" href="{{ path('app_car_edit', {'id': car.id}) }}">Edit</a>
+
+	{{ include('car/_delete_form.html.twig') }}
+{% endblock %}

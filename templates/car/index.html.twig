@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Car index
+{% endblock %}
+
+{% block body %}
+	<h1 class="display-2 m-4">Cars</h1>
+
+	<div class="d-flex justify-content-center align-items-end m-3">
+		<button class="btn button rounded w-25" type="button">
+			<a class="text-dark text-decoration-none" href="{{ path('app_car_new') }}">Add new car</a>
+		</button>
+	</div>
+	<div class="mt-5 d-flex flex-column align-items-center">
+		{% for car in cars %}
+			{% include "car/_carIndex.html.twig" %}
+
+		{% else %}
+			No car found
+		{% endfor %}
+	</div>
+{% endblock %}
